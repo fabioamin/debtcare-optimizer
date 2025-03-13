@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { 
   Brain, 
@@ -36,7 +37,7 @@ const Dashboard = () => {
             </p>
           </div>
           <Button className="mt-4 md:mt-0" size="sm" asChild>
-            <Link to="/dashboard/tour">Take a tour</Link>
+            <Link to="/dashboard/settings">Take a tour</Link>
           </Button>
         </div>
       </div>
@@ -129,7 +130,9 @@ const Dashboard = () => {
                       </p>
                     </CardContent>
                     <CardFooter>
-                      <Button variant="outline" size="sm" className="w-full">Generate Strategy</Button>
+                      <Button variant="outline" size="sm" className="w-full" asChild>
+                        <Link to="/dashboard/strategy">Generate Strategy</Link>
+                      </Button>
                     </CardFooter>
                   </Card>
                   
@@ -146,7 +149,9 @@ const Dashboard = () => {
                       </p>
                     </CardContent>
                     <CardFooter>
-                      <Button variant="outline" size="sm" className="w-full">Start Building</Button>
+                      <Button variant="outline" size="sm" className="w-full" asChild>
+                        <Link to="/dashboard/strategy">Start Building</Link>
+                      </Button>
                     </CardFooter>
                   </Card>
                   
@@ -163,7 +168,9 @@ const Dashboard = () => {
                       </p>
                     </CardContent>
                     <CardFooter>
-                      <Button variant="outline" size="sm" className="w-full">View Insights</Button>
+                      <Button variant="outline" size="sm" className="w-full" asChild>
+                        <Link to="/dashboard/insights">View Insights</Link>
+                      </Button>
                     </CardFooter>
                   </Card>
                 </div>
@@ -178,7 +185,9 @@ const Dashboard = () => {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Active</span>
-                        <Button variant="ghost" size="sm">Edit</Button>
+                        <Button variant="ghost" size="sm" asChild>
+                          <Link to="/dashboard/strategy">Edit</Link>
+                        </Button>
                       </div>
                     </div>
                     
@@ -189,7 +198,9 @@ const Dashboard = () => {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Active</span>
-                        <Button variant="ghost" size="sm">Edit</Button>
+                        <Button variant="ghost" size="sm" asChild>
+                          <Link to="/dashboard/strategy">Edit</Link>
+                        </Button>
                       </div>
                     </div>
                     
@@ -200,7 +211,9 @@ const Dashboard = () => {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Paused</span>
-                        <Button variant="ghost" size="sm">Edit</Button>
+                        <Button variant="ghost" size="sm" asChild>
+                          <Link to="/dashboard/strategy">Edit</Link>
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -270,7 +283,9 @@ const Dashboard = () => {
                 </div>
                 
                 <div className="flex justify-end">
-                  <Button>Download Full Report</Button>
+                  <Button asChild>
+                    <Link to="/dashboard/insights">Download Full Report</Link>
+                  </Button>
                 </div>
               </div>
             </CardContent>
@@ -301,7 +316,9 @@ const Dashboard = () => {
                       </p>
                     </CardContent>
                     <CardFooter>
-                      <Button variant="outline" size="sm" className="w-full">View Dashboard</Button>
+                      <Button variant="outline" size="sm" className="w-full" asChild>
+                        <Link to="/dashboard/compliance">View Dashboard</Link>
+                      </Button>
                     </CardFooter>
                   </Card>
                   
@@ -318,7 +335,9 @@ const Dashboard = () => {
                       </p>
                     </CardContent>
                     <CardFooter>
-                      <Button variant="outline" size="sm" className="w-full">Run Audit</Button>
+                      <Button variant="outline" size="sm" className="w-full" asChild>
+                        <Link to="/dashboard/compliance">Run Audit</Link>
+                      </Button>
                     </CardFooter>
                   </Card>
                   
@@ -335,7 +354,9 @@ const Dashboard = () => {
                       </p>
                     </CardContent>
                     <CardFooter>
-                      <Button variant="outline" size="sm" className="w-full">Configure Settings</Button>
+                      <Button variant="outline" size="sm" className="w-full" asChild>
+                        <Link to="/dashboard/settings">Configure Settings</Link>
+                      </Button>
                     </CardFooter>
                   </Card>
                 </div>
@@ -389,7 +410,9 @@ const Dashboard = () => {
             </p>
           </CardContent>
           <CardFooter>
-            <Button variant="ghost" size="sm" className="w-full">Configure Portal</Button>
+            <Button variant="ghost" size="sm" className="w-full" asChild>
+              <Link to="/dashboard/white-label/self-service">Configure Portal</Link>
+            </Button>
           </CardFooter>
         </Card>
         
@@ -406,7 +429,9 @@ const Dashboard = () => {
             </p>
           </CardContent>
           <CardFooter>
-            <Button variant="ghost" size="sm" className="w-full">Customize Branding</Button>
+            <Button variant="ghost" size="sm" className="w-full" asChild>
+              <Link to="/dashboard/white-label">Customize Branding</Link>
+            </Button>
           </CardFooter>
         </Card>
         
@@ -423,7 +448,9 @@ const Dashboard = () => {
             </p>
           </CardContent>
           <CardFooter>
-            <Button variant="ghost" size="sm" className="w-full">Setup Workflows</Button>
+            <Button variant="ghost" size="sm" className="w-full" asChild>
+              <Link to="/dashboard/workflows">Setup Workflows</Link>
+            </Button>
           </CardFooter>
         </Card>
       </div>
