@@ -48,6 +48,7 @@ const WorkflowsPanel = () => {
       description: "Connect with external collection systems via API",
       status: "draft",
       category: "integration",
+      lastRun: "Not run yet", // Adding the missing lastRun property
       icon: Code
     },
     {
