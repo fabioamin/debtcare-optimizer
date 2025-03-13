@@ -152,11 +152,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const updateUserRole = async (userId: string, newRole: UserRole) => {
-    const updatedUsers = users.map(u => 
-      u.id === userId ? { ...u, role: newRole } : u
+    setUsers(prevUsers => 
+      prevUsers.map(u => u.id === userId ? { ...u, role: newRole } : u)
     );
-    
-    setUsers(updatedUsers);
     
     if (user && user.id === userId) {
       setUser({ ...user, role: newRole });
@@ -198,10 +196,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       ...userData
     };
     
-    const updatedUsers = [...users];
-    updatedUsers[userIndex] = updatedUser;
-    
-    setUsers(updatedUsers);
+    setUsers(prevUsers => {
+      const newUsers = [...prevUsers];
+      newUsers[userIndex] = updatedUser;
+      return newUsers;
+    });
     
     if (user && user.id === userId) {
       setUser(updatedUser);
