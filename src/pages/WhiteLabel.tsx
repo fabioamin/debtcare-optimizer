@@ -32,9 +32,9 @@ const WhiteLabel = () => {
   return (
     <div className="min-h-screen bg-muted/40 flex w-full">
       <DashboardHeader onMenuClick={handleMenuClick} />
-      <div className="flex">
+      <div className="flex w-full pt-16">
         <DashboardSidebar open={sidebarOpen} />
-        <main className={`flex-1 p-6 pt-16 md:pt-20 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'}`}>
+        <main className={`flex-1 p-6 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'}`}>
           <div className="container mx-auto max-w-7xl space-y-6">
             {/* Page Header */}
             <div className="bg-primary/10 p-6 rounded-lg border border-primary/20">

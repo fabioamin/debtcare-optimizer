@@ -9,7 +9,7 @@ interface DashboardHeaderProps {
 
 const DashboardHeader = ({ onMenuClick }: DashboardHeaderProps) => {
   return (
-    <header className="h-16 border-b border-border bg-card px-4 flex items-center justify-between">
+    <header className="fixed top-0 right-0 left-0 z-10 h-16 border-b border-border bg-card px-4 flex items-center justify-between">
       <div className="flex items-center">
         <Button variant="ghost" size="icon" onClick={onMenuClick} className="mr-2">
           <Menu className="h-5 w-5" />
