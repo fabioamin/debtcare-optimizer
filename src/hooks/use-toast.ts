@@ -1,3 +1,4 @@
+
 import * as React from "react"
 
 import type {
@@ -139,6 +140,7 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, "id">
 
+// Basic toast function
 function toast({ ...props }: Toast) {
   const id = genId()
 
@@ -166,6 +168,42 @@ function toast({ ...props }: Toast) {
     dismiss,
     update,
   }
+}
+
+// Helper methods for different toast types
+toast.success = (title: string, options?: Omit<Toast, "title">) => {
+  return toast({
+    title,
+    variant: "default",
+    className: "bg-green-50 border-green-200 text-green-900",
+    ...options,
+  })
+}
+
+toast.error = (title: string, options?: Omit<Toast, "title">) => {
+  return toast({
+    title,
+    variant: "destructive",
+    ...options,
+  })
+}
+
+toast.warning = (title: string, options?: Omit<Toast, "title">) => {
+  return toast({
+    title,
+    variant: "default",
+    className: "bg-yellow-50 border-yellow-200 text-yellow-900",
+    ...options,
+  })
+}
+
+toast.info = (title: string, options?: Omit<Toast, "title">) => {
+  return toast({
+    title,
+    variant: "default",
+    className: "bg-blue-50 border-blue-200 text-blue-900",
+    ...options,
+  })
 }
 
 function useToast() {
