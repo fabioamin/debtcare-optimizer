@@ -121,6 +121,61 @@
     }
   },
   "dashboard": {
-    "communications": "Communications"
+    "communications": "Communications",
+    "payments": "Payments"
+  },
+  "payments": {
+    "title": "Payment Options",
+    "subtitle": "Manage available payment methods by country",
+    "selectCountry": "Select Country",
+    "availableMethods": "Available Payment Methods",
+    "settings": "Payment Settings",
+    "enableDisable": "Enable or disable this payment method",
+    "generalSettings": "General Settings",
+    "fees": "Fees and Processing",
+    "processing": "Processing Time",
+    "addPayment": "Add Payment Method",
+    "cancel": "Cancel",
+    "save": "Save Changes",
+    "success": {
+      "updated": "{method} settings updated",
+      "description": "Your payment method settings have been saved."
+    },
+    "status": {
+      "enabled": "{method} enabled",
+      "disabled": "{method} disabled",
+      "description": "The payment method {method} has been {status}."
+    },
+    "countries": {
+      "brazil": "Brazil",
+      "mexico": "Mexico",
+      "argentina": "Argentina",
+      "colombia": "Colombia",
+      "chile": "Chile",
+      "peru": "Peru",
+      "ecuador": "Ecuador",
+      "usa": "United States",
+      "canada": "Canada",
+      "costaRica": "Costa Rica",
+      "panama": "Panama"
+    },
+    "methods": {
+      "pix": "PIX",
+      "boleto": "Boleto",
+      "oxxo": "OXXO",
+      "pse": "PSE",
+      "efecty": "Efecty",
+      "zelle": "Zelle",
+      "creditCard": "Credit Card",
+      "debitCard": "Debit Card",
+      "bankTransfer": "Bank Transfer",
+      "paypal": "PayPal",
+      "venmo": "Venmo",
+      "sinpe": "SINPE Móvil",
+      "yape": "Yape",
+      "nequi": "Nequi",
+      "rapipago": "Rapipago",
+      "pagofacil": "Pago Fácil"
+    }
   }
 }

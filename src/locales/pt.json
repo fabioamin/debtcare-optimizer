@@ -121,6 +121,61 @@
     }
   },
   "dashboard": {
-    "communications": "Comunicações"
+    "communications": "Comunicações",
+    "payments": "Pagamentos"
+  },
+  "payments": {
+    "title": "Opções de Pagamento",
+    "subtitle": "Gerencie métodos de pagamento disponíveis por país",
+    "selectCountry": "Selecionar País",
+    "availableMethods": "Métodos de Pagamento Disponíveis",
+    "settings": "Configurações de Pagamento",
+    "enableDisable": "Habilitar ou desabilitar este método de pagamento",
+    "generalSettings": "Configurações Gerais",
+    "fees": "Taxas e Processamento",
+    "processing": "Tempo de Processamento",
+    "addPayment": "Adicionar Método de Pagamento",
+    "cancel": "Cancelar",
+    "save": "Salvar Alterações",
+    "success": {
+      "updated": "Configurações de {method} atualizadas",
+      "description": "As configurações do seu método de pagamento foram salvas."
+    },
+    "status": {
+      "enabled": "{method} habilitado",
+      "disabled": "{method} desabilitado",
+      "description": "O método de pagamento {method} foi {status}."
+    },
+    "countries": {
+      "brazil": "Brasil",
+      "mexico": "México",
+      "argentina": "Argentina",
+      "colombia": "Colômbia",
+      "chile": "Chile",
+      "peru": "Peru",
+      "ecuador": "Equador",
+      "usa": "Estados Unidos",
+      "canada": "Canadá",
+      "costaRica": "Costa Rica",
+      "panama": "Panamá"
+    },
+    "methods": {
+      "pix": "PIX",
+      "boleto": "Boleto",
+      "oxxo": "OXXO",
+      "pse": "PSE",
+      "efecty": "Efecty",
+      "zelle": "Zelle",
+      "creditCard": "Cartão de Crédito",
+      "debitCard": "Cartão de Débito",
+      "bankTransfer": "Transferência Bancária",
+      "paypal": "PayPal",
+      "venmo": "Venmo",
+      "sinpe": "SINPE Móvil",
+      "yape": "Yape",
+      "nequi": "Nequi",
+      "rapipago": "Rapipago",
+      "pagofacil": "Pago Fácil"
+    }
   }
 }
