@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Brain, Database, Activity, BarChart4, ChartLineUp, Sparkles } from "lucide-react";
+import { Brain, Database, Activity, BarChart4, ChartLine, Sparkles } from "lucide-react";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import AiInsightsPanel from "@/components/dashboard/AiInsightsPanel";
@@ -15,17 +14,13 @@ const Insights = () => {
 
   return (
     <div className="h-screen bg-background flex">
-      {/* Dashboard Sidebar */}
       <DashboardSidebar open={sidebarOpen} />
       
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Dashboard Header */}
         <DashboardHeader onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
         
-        {/* Main Content */}
         <main className="flex-1 overflow-y-auto p-4 md:p-6">
           <div className="max-w-7xl mx-auto space-y-6">
-            {/* Page Header */}
             <div className="bg-primary/10 p-6 rounded-lg border border-primary/20">
               <div className="flex flex-col md:flex-row md:items-center justify-between">
                 <div>
@@ -46,7 +41,6 @@ const Insights = () => {
               </div>
             </div>
             
-            {/* Insights Tabs */}
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="customer">
@@ -64,7 +58,6 @@ const Insights = () => {
               </TabsList>
               
               <TabsContent value="customer" className="mt-6">
-                {/* Reuse the existing AiInsightsPanel component */}
                 <AiInsightsPanel />
                 
                 <div className="mt-8 bg-secondary/30 p-6 rounded-lg">
@@ -220,7 +213,7 @@ const Insights = () => {
                       
                       <div className="bg-primary/10 p-4 rounded-lg">
                         <div className="flex items-start gap-3">
-                          <ChartLineUp className="h-5 w-5 text-primary mt-1" />
+                          <ChartLine className="h-5 w-5 text-primary mt-1" />
                           <div>
                             <h3 className="font-medium">Trend Analysis</h3>
                             <p className="mt-1 text-sm">
@@ -247,3 +240,4 @@ const Insights = () => {
 };
 
 export default Insights;
+
