@@ -16,7 +16,9 @@ import {
   Menu,
   Bell,
   Search,
-  UserCircle2
+  UserCircle2,
+  Target,
+  Wand2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -86,8 +88,12 @@ const Dashboard = () => {
             </div>
             
             {/* Main Functionality Tabs */}
-            <Tabs defaultValue="ai-insights" className="w-full">
+            <Tabs defaultValue="strategy" className="w-full">
               <TabsList className="w-full flex flex-wrap md:flex-nowrap mb-4">
+                <TabsTrigger value="strategy" className="flex-1">
+                  <Target className="h-4 w-4 mr-2" />
+                  Strategy Creation
+                </TabsTrigger>
                 <TabsTrigger value="ai-insights" className="flex-1">
                   <Brain className="h-4 w-4 mr-2" />
                   AI Insights
@@ -110,6 +116,111 @@ const Dashboard = () => {
                 </TabsTrigger>
               </TabsList>
               
+              <TabsContent value="strategy" className="space-y-4 py-2">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Strategy Creation</CardTitle>
+                    <CardDescription>
+                      Create and manage custom debt recovery strategies tailored to your specific needs
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <Card className="hover:shadow-md transition-shadow">
+                          <CardHeader className="pb-2">
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-2">
+                              <Wand2 className="h-5 w-5" />
+                            </div>
+                            <CardTitle className="text-lg">Automated Strategy</CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-sm text-muted-foreground">
+                              Let our AI create an optimized strategy based on your portfolio characteristics.
+                            </p>
+                          </CardContent>
+                          <CardFooter>
+                            <Button variant="outline" size="sm" className="w-full">Generate Strategy</Button>
+                          </CardFooter>
+                        </Card>
+                        
+                        <Card className="hover:shadow-md transition-shadow">
+                          <CardHeader className="pb-2">
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-2">
+                              <Target className="h-5 w-5" />
+                            </div>
+                            <CardTitle className="text-lg">Custom Strategy</CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-sm text-muted-foreground">
+                              Build your own strategy with our intuitive strategy builder tool.
+                            </p>
+                          </CardContent>
+                          <CardFooter>
+                            <Button variant="outline" size="sm" className="w-full">Start Building</Button>
+                          </CardFooter>
+                        </Card>
+                        
+                        <Card className="hover:shadow-md transition-shadow">
+                          <CardHeader className="pb-2">
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-2">
+                              <BarChart className="h-5 w-5" />
+                            </div>
+                            <CardTitle className="text-lg">Strategy Insights</CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-sm text-muted-foreground">
+                              View performance metrics and insights for your active strategies.
+                            </p>
+                          </CardContent>
+                          <CardFooter>
+                            <Button variant="outline" size="sm" className="w-full">View Insights</Button>
+                          </CardFooter>
+                        </Card>
+                      </div>
+                      
+                      <div className="bg-secondary/40 p-6 rounded-lg">
+                        <h3 className="text-lg font-medium mb-3">Active Strategies</h3>
+                        <div className="space-y-4">
+                          <div className="flex justify-between items-center p-3 bg-background rounded-lg border">
+                            <div>
+                              <h4 className="font-medium">High-Value Accounts Strategy</h4>
+                              <p className="text-sm text-muted-foreground">For accounts over $10,000</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Active</span>
+                              <Button variant="ghost" size="sm">Edit</Button>
+                            </div>
+                          </div>
+                          
+                          <div className="flex justify-between items-center p-3 bg-background rounded-lg border">
+                            <div>
+                              <h4 className="font-medium">Gentle Reminder Campaign</h4>
+                              <p className="text-sm text-muted-foreground">For accounts 1-30 days past due</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Active</span>
+                              <Button variant="ghost" size="sm">Edit</Button>
+                            </div>
+                          </div>
+                          
+                          <div className="flex justify-between items-center p-3 bg-background rounded-lg border">
+                            <div>
+                              <h4 className="font-medium">Payment Plan Strategy</h4>
+                              <p className="text-sm text-muted-foreground">Accounts with scheduled payment plans</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Paused</span>
+                              <Button variant="ghost" size="sm">Edit</Button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
               <TabsContent value="ai-insights" className="space-y-4 py-2">
                 <AiInsightsPanel />
               </TabsContent>
@@ -131,8 +242,47 @@ const Dashboard = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="bg-secondary/50 p-8 rounded-lg flex items-center justify-center">
-                      <p className="text-muted-foreground">Analytics charts and reports will display here</p>
+                    <div className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="bg-secondary/40 p-4 rounded-lg">
+                          <h3 className="font-medium mb-3">Recovery Performance</h3>
+                          <div className="bg-secondary/60 h-48 rounded-lg flex items-center justify-center">
+                            <p className="text-muted-foreground">Recovery performance chart</p>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-secondary/40 p-4 rounded-lg">
+                          <h3 className="font-medium mb-3">Communication Effectiveness</h3>
+                          <div className="bg-secondary/60 h-48 rounded-lg flex items-center justify-center">
+                            <p className="text-muted-foreground">Communication effectiveness chart</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-secondary/40 p-4 rounded-lg">
+                        <h3 className="font-medium mb-3">Key Metrics Overview</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                          <div className="bg-background p-3 rounded-lg border">
+                            <p className="text-sm text-muted-foreground">Total Recovered</p>
+                            <p className="text-2xl font-bold">$1,243,567</p>
+                            <p className="text-xs text-green-600">↑ 12.5% from last month</p>
+                          </div>
+                          <div className="bg-background p-3 rounded-lg border">
+                            <p className="text-sm text-muted-foreground">Active Accounts</p>
+                            <p className="text-2xl font-bold">3,421</p>
+                            <p className="text-xs text-green-600">↑ 3.2% from last month</p>
+                          </div>
+                          <div className="bg-background p-3 rounded-lg border">
+                            <p className="text-sm text-muted-foreground">Avg. Collection Time</p>
+                            <p className="text-2xl font-bold">27.3 days</p>
+                            <p className="text-xs text-green-600">↓ 2.1 days from last month</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-end">
+                        <Button>Download Full Report</Button>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -147,8 +297,88 @@ const Dashboard = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="bg-secondary/50 p-8 rounded-lg flex items-center justify-center">
-                      <p className="text-muted-foreground">Compliance dashboard and reports will display here</p>
+                    <div className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <Card className="hover:shadow-md transition-shadow">
+                          <CardHeader className="pb-2">
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-2">
+                              <ShieldCheck className="h-5 w-5" />
+                            </div>
+                            <CardTitle className="text-lg">Compliance Dashboard</CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-sm text-muted-foreground">
+                              Monitor compliance status and receive alerts for potential issues.
+                            </p>
+                          </CardContent>
+                          <CardFooter>
+                            <Button variant="outline" size="sm" className="w-full">View Dashboard</Button>
+                          </CardFooter>
+                        </Card>
+                        
+                        <Card className="hover:shadow-md transition-shadow">
+                          <CardHeader className="pb-2">
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-2">
+                              <Target className="h-5 w-5" />
+                            </div>
+                            <CardTitle className="text-lg">Compliance Audit</CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-sm text-muted-foreground">
+                              Run comprehensive compliance audits and generate reports.
+                            </p>
+                          </CardContent>
+                          <CardFooter>
+                            <Button variant="outline" size="sm" className="w-full">Run Audit</Button>
+                          </CardFooter>
+                        </Card>
+                        
+                        <Card className="hover:shadow-md transition-shadow">
+                          <CardHeader className="pb-2">
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-2">
+                              <Settings className="h-5 w-5" />
+                            </div>
+                            <CardTitle className="text-lg">Configuration</CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-sm text-muted-foreground">
+                              Configure compliance rules and security settings.
+                            </p>
+                          </CardContent>
+                          <CardFooter>
+                            <Button variant="outline" size="sm" className="w-full">Configure Settings</Button>
+                          </CardFooter>
+                        </Card>
+                      </div>
+                      
+                      <div className="bg-secondary/40 p-4 rounded-lg">
+                        <h3 className="font-medium mb-3">Compliance Status</h3>
+                        <div className="space-y-3">
+                          <div className="bg-background p-3 rounded-lg border flex justify-between items-center">
+                            <div>
+                              <h4 className="font-medium">FDCPA Compliance</h4>
+                              <p className="text-sm text-muted-foreground">Fair Debt Collection Practices Act</p>
+                            </div>
+                            <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Compliant</span>
+                          </div>
+                          
+                          <div className="bg-background p-3 rounded-lg border flex justify-between items-center">
+                            <div>
+                              <h4 className="font-medium">TCPA Compliance</h4>
+                              <p className="text-sm text-muted-foreground">Telephone Consumer Protection Act</p>
+                            </div>
+                            <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Compliant</span>
+                          </div>
+                          
+                          <div className="bg-background p-3 rounded-lg border flex justify-between items-center">
+                            <div>
+                              <h4 className="font-medium">HIPAA Compliance</h4>
+                              <p className="text-sm text-muted-foreground">Health Insurance Portability and Accountability Act</p>
+                            </div>
+                            <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Needs Review</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
