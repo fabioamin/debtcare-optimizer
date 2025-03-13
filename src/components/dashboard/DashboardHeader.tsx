@@ -1,7 +1,9 @@
 
-import { Bell, Menu, Search, UserCircle2 } from "lucide-react";
+import { Menu, Search, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import NotificationsPopover from "./NotificationsPopover";
+import LanguageSelector from "../LanguageSelector";
 
 interface DashboardHeaderProps {
   onMenuClick: () => void;
@@ -25,10 +27,8 @@ const DashboardHeader = ({ onMenuClick }: DashboardHeaderProps) => {
       </div>
       
       <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon" className="relative">
-          <Bell className="h-5 w-5" />
-          <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
-        </Button>
+        <LanguageSelector />
+        <NotificationsPopover />
         <Button variant="ghost" className="flex items-center gap-2">
           <UserCircle2 className="h-5 w-5" />
           <span className="hidden md:inline">Account</span>
