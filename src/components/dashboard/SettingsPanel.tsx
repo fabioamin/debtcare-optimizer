@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,17 +6,22 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
+import UserRoleManagement from "./UserRoleManagement";
+import { ROLE_PERMISSIONS, useAuth } from "@/contexts/AuthContext";
 import { 
   UserCircle, 
   Lock, 
   BellRing, 
   CreditCard, 
-  HelpCircle 
+  HelpCircle,
+  UserCog,
+  Shield
 } from "lucide-react";
 
 const SettingsPanel = () => {
   const { toast } = useToast();
   const [saving, setSaving] = useState(false);
+  const { user, hasPermission } = useAuth();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -35,7 +39,7 @@ const SettingsPanel = () => {
 
   return (
     <Tabs defaultValue="account" className="w-full">
-      <TabsList className="grid grid-cols-5 mb-8">
+      <TabsList className="grid grid-cols-6 mb-8">
         <TabsTrigger value="account" className="flex items-center gap-2">
           <UserCircle className="h-4 w-4" />
           <span className="hidden sm:inline">Account</span>
@@ -56,11 +60,51 @@ const SettingsPanel = () => {
           <HelpCircle className="h-4 w-4" />
           <span className="hidden sm:inline">Support</span>
         </TabsTrigger>
+        {hasPermission('users.view') && (
+          <TabsTrigger value="users" className="flex items-center gap-2">
+            <UserCog className="h-4 w-4" />
+            <span className="hidden sm:inline">Usuários</span>
+          </TabsTrigger>
+        )}
       </TabsList>
 
       {/* Account Tab */}
       <TabsContent value="account">
         <div className="grid gap-6 md:grid-cols-2">
+          <Card className="col-span-2 mb-4">
+            <CardHeader>
+              <CardTitle>Perfil de Acesso</CardTitle>
+              <CardDescription>
+                Seu perfil de acesso atual e permissões
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="p-4 border rounded-md">
+                <div className="flex items-center gap-3 mb-4">
+                  <Shield className="h-6 w-6 text-primary" />
+                  <div>
+                    <h3 className="text-lg font-medium">
+                      {ROLE_PERMISSIONS.find(r => r.role === user?.role)?.displayName || 'Usuário'}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {ROLE_PERMISSIONS.find(r => r.role === user?.role)?.description}
+                    </p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="font-medium text-sm">Permissões disponíveis:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {ROLE_PERMISSIONS.find(r => r.role === user?.role)?.permissions.map(permission => (
+                      <span key={permission} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                        {permission}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
           <Card>
             <CardHeader>
               <CardTitle>Profile Information</CardTitle>
@@ -419,6 +463,54 @@ const SettingsPanel = () => {
                   </p>
                   <Button variant="outline" className="w-full">View documentation</Button>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </TabsContent>
+      
+      {/* Users Tab */}
+      <TabsContent value="users">
+        <div className="space-y-6">
+          <UserRoleManagement />
+          
+          <Card>
+            <CardHeader>
+              <CardTitle>Permissões por Perfil</CardTitle>
+              <CardDescription>
+                Visão geral das permissões disponíveis para cada perfil
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 px-4 text-left">Permissão</th>
+                      {ROLE_PERMISSIONS.map(role => (
+                        <th key={role.role} className="py-2 px-4 text-center">
+                          {role.displayName}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Array.from(new Set(ROLE_PERMISSIONS.flatMap(r => r.permissions))).map(permission => (
+                      <tr key={permission} className="border-b">
+                        <td className="py-2 px-4">{permission}</td>
+                        {ROLE_PERMISSIONS.map(role => (
+                          <td key={role.role} className="py-2 px-4 text-center">
+                            {role.permissions.includes(permission) ? (
+                              <span className="text-green-500">✓</span>
+                            ) : (
+                              <span className="text-red-500">✗</span>
+                            )}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </CardContent>
           </Card>
