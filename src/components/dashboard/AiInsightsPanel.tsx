@@ -3,8 +3,13 @@ import { BarChart4, Circle, Phone, Mail, MessageSquare } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { useState } from "react";
+import InsightChart from "./InsightChart";
+import { toast } from "@/components/ui/toast";
 
 const AiInsightsPanel = () => {
+  const [isGeneratingStrategy, setIsGeneratingStrategy] = useState(false);
+
   const behavioralInsights = [
     {
       title: "Payment Preference",
@@ -31,6 +36,30 @@ const AiInsightsPanel = () => {
     { method: "Email", icon: Mail, percentage: 25 },
     { method: "SMS", icon: MessageSquare, percentage: 45 }
   ];
+
+  // Demo data for charts
+  const paymentProbabilityData = [
+    { day: "Mon", probability: 42 },
+    { day: "Tue", probability: 55 },
+    { day: "Wed", probability: 50 },
+    { day: "Thu", probability: 65 },
+    { day: "Fri", probability: 72 },
+    { day: "Sat", probability: 60 },
+    { day: "Sun", probability: 45 },
+  ];
+
+  const handleGenerateStrategy = () => {
+    setIsGeneratingStrategy(true);
+    
+    // Simulate strategy generation
+    setTimeout(() => {
+      setIsGeneratingStrategy(false);
+      toast({
+        title: "Strategy Generated",
+        description: "Custom strategy has been created based on customer insights.",
+      });
+    }, 2000);
+  };
 
   return (
     <>
@@ -59,13 +88,40 @@ const AiInsightsPanel = () => {
               </div>
             ))}
           </div>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-secondary/30 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-3">Payment Probability by Day</h4>
+              <InsightChart 
+                type="bar" 
+                data={paymentProbabilityData} 
+                dataKey="probability" 
+                nameKey="day" 
+              />
+            </div>
+            <div className="bg-secondary/30 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-3">Contact Method Effectiveness</h4>
+              <InsightChart 
+                type="pie" 
+                data={contactMethods.map(c => ({ name: c.method, value: c.percentage }))} 
+                dataKey="value" 
+                nameKey="name" 
+              />
+            </div>
+          </div>
         </CardContent>
         <CardFooter>
-          <Button className="w-full">Generate Custom Strategy</Button>
+          <Button 
+            className="w-full" 
+            disabled={isGeneratingStrategy}
+            onClick={handleGenerateStrategy}
+          >
+            {isGeneratingStrategy ? "Generating..." : "Generate Custom Strategy"}
+          </Button>
         </CardFooter>
       </Card>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
         <Card>
           <CardHeader>
             <CardTitle className="text-base">Customer Engagement Prediction</CardTitle>

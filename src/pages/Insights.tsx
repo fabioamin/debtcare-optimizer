@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Brain, Database, Activity, BarChart4, ChartLine, Sparkles } from "lucide-react";
@@ -7,10 +8,85 @@ import AiInsightsPanel from "@/components/dashboard/AiInsightsPanel";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import InsightChart from "@/components/dashboard/InsightChart";
+import { toast } from "@/components/ui/sonner";
 
 const Insights = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("customer");
+  const [loading, setLoading] = useState({
+    targetedStrategy: false,
+    applyInsight: false
+  });
+
+  // Demo data for portfolio charts
+  const portfolioSegmentationData = [
+    { name: "Recent (<30 days)", value: 35 },
+    { name: "Medium (30-90 days)", value: 40 },
+    { name: "Aging (90-180 days)", value: 15 },
+    { name: "Legacy (>180 days)", value: 10 }
+  ];
+
+  const collectionProbabilityData = [
+    { segment: "Recent", probability: 85 },
+    { segment: "Medium", probability: 60 },
+    { segment: "Aging", probability: 35 },
+    { segment: "Legacy", probability: 15 }
+  ];
+
+  const strategyEffectivenessData = [
+    { strategy: "Email", effectiveness: 45 },
+    { strategy: "SMS", effectiveness: 75 },
+    { strategy: "Phone", effectiveness: 60 },
+    { strategy: "Legal", effectiveness: 90 }
+  ];
+
+  // Demo data for predictive charts
+  const paymentTimelineData = [
+    { day: 1, probability: 10 },
+    { day: 7, probability: 25 },
+    { day: 14, probability: 45 },
+    { day: 30, probability: 65 },
+    { day: 60, probability: 75 },
+    { day: 90, probability: 80 }
+  ];
+
+  const communicationResponseData = [
+    { channel: "Morning", email: 35, sms: 45, phone: 25 },
+    { channel: "Afternoon", email: 40, sms: 50, phone: 30 },
+    { channel: "Evening", email: 50, sms: 70, phone: 45 },
+    { channel: "Weekend", email: 30, sms: 60, phone: 20 }
+  ];
+
+  const handleApplyAction = (action: string) => {
+    toast.success(`Applied action: ${action}`, {
+      description: "The recommended action has been applied to your strategy."
+    });
+  };
+
+  const handleGenerateTargetedStrategy = () => {
+    setLoading(prev => ({ ...prev, targetedStrategy: true }));
+    
+    // Simulate strategy generation
+    setTimeout(() => {
+      setLoading(prev => ({ ...prev, targetedStrategy: false }));
+      toast.success("Targeted Strategy Generated", {
+        description: "A new collection strategy has been created for the medium-sized balances segment."
+      });
+    }, 2000);
+  };
+
+  const handleApplyInsight = () => {
+    setLoading(prev => ({ ...prev, applyInsight: true }));
+    
+    // Simulate insight application
+    setTimeout(() => {
+      setLoading(prev => ({ ...prev, applyInsight: false }));
+      toast.success("Insight Applied to Strategy", {
+        description: "Communication schedule updated for optimal evening delivery."
+      });
+    }, 2000);
+  };
 
   return (
     <div className="h-screen bg-background flex">
@@ -74,19 +150,19 @@ const Insights = () => {
                         <div className="bg-background p-3 rounded-lg border">
                           <div className="flex justify-between items-center">
                             <p className="font-medium">Switch primary contact method to SMS</p>
-                            <Button size="sm" variant="outline">Apply</Button>
+                            <Button size="sm" variant="outline" onClick={() => handleApplyAction("Switch to SMS")}>Apply</Button>
                           </div>
                         </div>
                         <div className="bg-background p-3 rounded-lg border">
                           <div className="flex justify-between items-center">
                             <p className="font-medium">Offer mobile payment options prominently</p>
-                            <Button size="sm" variant="outline">Apply</Button>
+                            <Button size="sm" variant="outline" onClick={() => handleApplyAction("Mobile payment options")}>Apply</Button>
                           </div>
                         </div>
                         <div className="bg-background p-3 rounded-lg border">
                           <div className="flex justify-between items-center">
                             <p className="font-medium">Schedule communications for weekday evenings</p>
-                            <Button size="sm" variant="outline">Apply</Button>
+                            <Button size="sm" variant="outline" onClick={() => handleApplyAction("Evening communications")}>Apply</Button>
                           </div>
                         </div>
                       </div>
@@ -108,8 +184,14 @@ const Insights = () => {
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="bg-secondary/40 p-4 rounded-lg">
                           <h3 className="font-medium mb-3">Portfolio Segmentation</h3>
-                          <div className="bg-secondary/60 h-48 rounded-lg flex items-center justify-center">
-                            <p className="text-muted-foreground">Portfolio segmentation chart</p>
+                          <div className="h-48">
+                            <InsightChart 
+                              type="pie" 
+                              data={portfolioSegmentationData} 
+                              dataKey="value" 
+                              nameKey="name" 
+                              height={180}
+                            />
                           </div>
                           <div className="mt-3 text-sm text-muted-foreground">
                             AI-generated segmentation based on debt age, amount, and customer behavior
@@ -118,8 +200,14 @@ const Insights = () => {
                         
                         <div className="bg-secondary/40 p-4 rounded-lg">
                           <h3 className="font-medium mb-3">Collection Probability</h3>
-                          <div className="bg-secondary/60 h-48 rounded-lg flex items-center justify-center">
-                            <p className="text-muted-foreground">Collection probability chart</p>
+                          <div className="h-48">
+                            <InsightChart 
+                              type="bar" 
+                              data={collectionProbabilityData} 
+                              dataKey="probability" 
+                              nameKey="segment" 
+                              height={180}
+                            />
                           </div>
                           <div className="mt-3 text-sm text-muted-foreground">
                             ML-predicted likelihood of successful collection for each segment
@@ -128,8 +216,14 @@ const Insights = () => {
                         
                         <div className="bg-secondary/40 p-4 rounded-lg">
                           <h3 className="font-medium mb-3">Strategy Effectiveness</h3>
-                          <div className="bg-secondary/60 h-48 rounded-lg flex items-center justify-center">
-                            <p className="text-muted-foreground">Strategy effectiveness chart</p>
+                          <div className="h-48">
+                            <InsightChart 
+                              type="bar" 
+                              data={strategyEffectivenessData} 
+                              dataKey="effectiveness" 
+                              nameKey="strategy" 
+                              height={180}
+                            />
                           </div>
                           <div className="mt-3 text-sm text-muted-foreground">
                             Comparison of different collection strategies by segment
@@ -148,7 +242,12 @@ const Insights = () => {
                           with a customized SMS payment reminder strategy could improve recovery rates by approximately 23%.
                         </p>
                         <div className="mt-3 flex justify-end">
-                          <Button>Generate Targeted Strategy</Button>
+                          <Button 
+                            onClick={handleGenerateTargetedStrategy}
+                            disabled={loading.targetedStrategy}
+                          >
+                            {loading.targetedStrategy ? "Generating..." : "Generate Targeted Strategy"}
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -169,8 +268,14 @@ const Insights = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="bg-secondary/40 p-4 rounded-lg">
                           <h3 className="font-medium mb-3">Payment Probability Timeline</h3>
-                          <div className="bg-secondary/60 h-48 rounded-lg flex items-center justify-center">
-                            <p className="text-muted-foreground">Payment probability timeline chart</p>
+                          <div className="h-48">
+                            <InsightChart 
+                              type="line" 
+                              data={paymentTimelineData} 
+                              dataKey="probability" 
+                              nameKey="day" 
+                              height={180}
+                            />
                           </div>
                           <div className="mt-3 text-sm text-muted-foreground">
                             AI prediction of payment probability over time based on historical patterns
@@ -179,8 +284,14 @@ const Insights = () => {
                         
                         <div className="bg-secondary/40 p-4 rounded-lg">
                           <h3 className="font-medium mb-3">Communication Response Forecast</h3>
-                          <div className="bg-secondary/60 h-48 rounded-lg flex items-center justify-center">
-                            <p className="text-muted-foreground">Communication response forecast chart</p>
+                          <div className="h-48">
+                            <InsightChart 
+                              type="bar" 
+                              data={communicationResponseData} 
+                              dataKey="sms" 
+                              nameKey="channel" 
+                              height={180}
+                            />
                           </div>
                           <div className="mt-3 text-sm text-muted-foreground">
                             Predicted response rates for different communication methods and timing
@@ -224,7 +335,12 @@ const Insights = () => {
                           </div>
                         </div>
                         <div className="mt-3 flex justify-end">
-                          <Button>Apply Insight to Strategy</Button>
+                          <Button 
+                            onClick={handleApplyInsight}
+                            disabled={loading.applyInsight}
+                          >
+                            {loading.applyInsight ? "Applying..." : "Apply Insight to Strategy"}
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -240,4 +356,3 @@ const Insights = () => {
 };
 
 export default Insights;
-
