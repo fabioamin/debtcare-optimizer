@@ -67,17 +67,17 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
     },
     { 
       icon: <UserCircle className="h-5 w-5" />, 
-      label: t('dashboard.selfService'), 
+      label: "Self Service", 
       path: "/dashboard/self-service" 
     },
     { 
       icon: <Layout className="h-5 w-5" />, 
-      label: t('dashboard.portal'), 
+      label: "Portal", 
       path: "/dashboard/portal" 
     },
     { 
       icon: <Workflow className="h-5 w-5" />, 
-      label: t('dashboard.automation'), 
+      label: "Automation", 
       path: "/dashboard/automation" 
     },
     { 
