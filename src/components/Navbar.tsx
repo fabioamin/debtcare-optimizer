@@ -46,11 +46,11 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <Link to="/#features" className="text-foreground/80 hover:text-primary transition-colors">
-              Features
-            </Link>
             <Link to="/#solutions" className="text-foreground/80 hover:text-primary transition-colors">
               Solutions
+            </Link>
+            <Link to="/#features" className="text-foreground/80 hover:text-primary transition-colors">
+              Features
             </Link>
             <Link to="/#testimonials" className="text-foreground/80 hover:text-primary transition-colors">
               Success Stories
@@ -98,18 +98,18 @@ const Navbar = () => {
       >
         <div className="space-y-4 px-6 py-6">
           <Link
-            to="/#features"
-            className="block py-2 text-foreground/80 hover:text-primary"
-            onClick={closeMenu}
-          >
-            Features
-          </Link>
-          <Link
             to="/#solutions"
             className="block py-2 text-foreground/80 hover:text-primary"
             onClick={closeMenu}
           >
             Solutions
+          </Link>
+          <Link
+            to="/#features"
+            className="block py-2 text-foreground/80 hover:text-primary"
+            onClick={closeMenu}
+          >
+            Features
           </Link>
           <Link
             to="/#testimonials"
