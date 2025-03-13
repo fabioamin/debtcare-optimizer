@@ -15,10 +15,14 @@ const CommunicationPanel = () => {
   return (
     <Card className="overflow-hidden border-muted bg-card/50 backdrop-blur-sm">
       <CardHeader className="pb-3">
-        <CardTitle className="text-xl md:text-2xl">Omnichannel Communication</CardTitle>
-        <CardDescription className="text-sm md:text-base">
-          Seamlessly engage customers through their preferred channels with empathetic messaging
-        </CardDescription>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+          <div>
+            <CardTitle className="text-xl md:text-2xl">Omnichannel Communication</CardTitle>
+            <CardDescription className="text-sm md:text-base">
+              Seamlessly engage customers through their preferred channels with empathetic messaging
+            </CardDescription>
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="p-3 md:p-6">
         <Tabs defaultValue="templates" className="w-full">

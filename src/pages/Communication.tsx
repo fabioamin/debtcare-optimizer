@@ -5,7 +5,6 @@ import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import CommunicationPanel from "@/components/dashboard/CommunicationPanel";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
-import LanguageSelector from "@/components/LanguageSelector";
 
 const Communication = () => {
   const { toast } = useToast();
@@ -30,7 +29,7 @@ const Communication = () => {
                   {t('communication.subtitle')}
                 </p>
               </div>
-              <LanguageSelector />
+              {/* Removing LanguageSelector since it requires LanguageProvider context */}
             </div>
             
             <CommunicationPanel />
