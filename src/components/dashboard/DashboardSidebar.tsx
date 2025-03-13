@@ -10,7 +10,10 @@ import {
   Lightbulb, 
   MessageSquare, 
   Settings, 
-  CreditCard
+  CreditCard,
+  Shield,
+  Globe,
+  Users
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -54,6 +57,21 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
       path: "/dashboard/payments" 
     },
     { 
+      icon: <Shield className="h-5 w-5" />, 
+      label: t('dashboard.compliance'), 
+      path: "/dashboard/compliance" 
+    },
+    { 
+      icon: <Globe className="h-5 w-5" />, 
+      label: t('dashboard.international'), 
+      path: "/dashboard/international" 
+    },
+    { 
+      icon: <Users className="h-5 w-5" />, 
+      label: t('dashboard.customers'), 
+      path: "/dashboard/customers" 
+    },
+    { 
       icon: <Settings className="h-5 w-5" />, 
       label: "Settings", 
       path: "/dashboard/settings" 
@@ -63,7 +81,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
   if (!open) return null;
 
   return (
-    <Card className="h-screen w-64 fixed left-0 top-16 border-t-0 rounded-none pt-4 animate-fade-in overflow-auto">
+    <Card className="h-screen w-64 fixed left-0 top-16 border-t-0 rounded-none pt-4 animate-fade-in overflow-auto z-10">
       <nav className="space-y-1 px-2">
         {menuItems.map((item) => (
           <Link

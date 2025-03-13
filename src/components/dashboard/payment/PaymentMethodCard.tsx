@@ -45,11 +45,12 @@ export const PaymentMethodCard: React.FC<PaymentMethodCardProps> = ({ method, co
         return <CreditCard className="h-6 w-6" />;
       case 'bankTransfer':
       case 'zelle':
-        return <Building className="h-6 w-6" />; // Changed from Bank to Building
+        return <Building className="h-6 w-6" />; // Using Building icon instead of Bank
       case 'boleto':
       case 'oxxo':
       case 'rapipago':
       case 'pagofacil':
+      case 'pix':
         return <Receipt className="h-6 w-6" />;
       default:
         return <DollarSign className="h-6 w-6" />;
