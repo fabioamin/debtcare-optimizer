@@ -1,424 +1,321 @@
 
 import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { 
-  UserCircle, 
-  Lock, 
-  BellRing, 
-  CreditCard, 
-  HelpCircle 
+  FileText, 
+  Download, 
+  Upload, 
+  Clock,
+  ClipboardList
 } from "lucide-react";
 
 const SelfServicePanel = () => {
   const { toast } = useToast();
-  const [saving, setSaving] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    setSaving(true);
+  const handleAction = (action: string) => {
+    setLoading(true);
     
     // Simulate API call
     setTimeout(() => {
-      setSaving(false);
+      setLoading(false);
       toast({
-        title: "Settings saved",
-        description: "Your account settings have been updated successfully."
+        title: "Action completed",
+        description: `${action} was successful.`
       });
     }, 1000);
   };
 
   return (
-    <Tabs defaultValue="account" className="w-full">
-      <TabsList className="grid grid-cols-5 mb-8">
-        <TabsTrigger value="account" className="flex items-center gap-2">
-          <UserCircle className="h-4 w-4" />
-          <span className="hidden sm:inline">Account</span>
+    <Tabs defaultValue="documents" className="w-full">
+      <TabsList className="grid grid-cols-4 mb-8">
+        <TabsTrigger value="documents" className="flex items-center gap-2">
+          <FileText className="h-4 w-4" />
+          <span className="hidden sm:inline">Documents</span>
         </TabsTrigger>
-        <TabsTrigger value="security" className="flex items-center gap-2">
-          <Lock className="h-4 w-4" />
-          <span className="hidden sm:inline">Security</span>
+        <TabsTrigger value="statements" className="flex items-center gap-2">
+          <ClipboardList className="h-4 w-4" />
+          <span className="hidden sm:inline">Statements</span>
         </TabsTrigger>
-        <TabsTrigger value="notifications" className="flex items-center gap-2">
-          <BellRing className="h-4 w-4" />
-          <span className="hidden sm:inline">Notifications</span>
+        <TabsTrigger value="payments" className="flex items-center gap-2">
+          <Download className="h-4 w-4" />
+          <span className="hidden sm:inline">Payment History</span>
         </TabsTrigger>
-        <TabsTrigger value="billing" className="flex items-center gap-2">
-          <CreditCard className="h-4 w-4" />
-          <span className="hidden sm:inline">Billing</span>
-        </TabsTrigger>
-        <TabsTrigger value="support" className="flex items-center gap-2">
-          <HelpCircle className="h-4 w-4" />
-          <span className="hidden sm:inline">Support</span>
+        <TabsTrigger value="requests" className="flex items-center gap-2">
+          <Clock className="h-4 w-4" />
+          <span className="hidden sm:inline">Service Requests</span>
         </TabsTrigger>
       </TabsList>
 
-      {/* Account Tab */}
-      <TabsContent value="account">
+      {/* Documents Tab */}
+      <TabsContent value="documents">
         <div className="grid gap-6 md:grid-cols-2">
           <Card>
             <CardHeader>
-              <CardTitle>Profile Information</CardTitle>
+              <CardTitle>Account Documents</CardTitle>
               <CardDescription>
-                Update your personal information and preferences
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit}>
-                <div className="grid gap-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="firstName">First name</Label>
-                      <Input id="firstName" defaultValue="John" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="lastName">Last name</Label>
-                      <Input id="lastName" defaultValue="Doe" />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" defaultValue="john.doe@example.com" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="company">Company</Label>
-                    <Input id="company" defaultValue="Acme Inc." />
-                  </div>
-                  <Button disabled={saving}>
-                    {saving ? "Saving..." : "Save changes"}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader>
-              <CardTitle>Account Preferences</CardTitle>
-              <CardDescription>
-                Manage your account settings and preferences
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                <div className="flex items-center justify-between space-x-2">
-                  <Label htmlFor="language">Language</Label>
-                  <select 
-                    id="language"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
-                  >
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                    <option value="pt">Português</option>
-                  </select>
-                </div>
-                <div className="flex items-center justify-between space-x-2">
-                  <Label htmlFor="timeZone">Time Zone</Label>
-                  <select 
-                    id="timeZone"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
-                  >
-                    <option value="utc">UTC</option>
-                    <option value="est">Eastern (EST)</option>
-                    <option value="cst">Central (CST)</option>
-                    <option value="pst">Pacific (PST)</option>
-                  </select>
-                </div>
-                <div className="flex items-center justify-between space-x-2">
-                  <div className="space-y-0.5">
-                    <Label htmlFor="darkMode">Dark Mode</Label>
-                    <p className="text-xs text-muted-foreground">
-                      Toggle the app between light and dark mode
-                    </p>
-                  </div>
-                  <Switch id="darkMode" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </TabsContent>
-
-      {/* Security Tab */}
-      <TabsContent value="security">
-        <div className="grid gap-6 md:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>Change Password</CardTitle>
-              <CardDescription>
-                Update your password to enhance security
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit}>
-                <div className="grid gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="currentPassword">Current password</Label>
-                    <Input id="currentPassword" type="password" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="newPassword">New password</Label>
-                    <Input id="newPassword" type="password" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="confirmPassword">Confirm password</Label>
-                    <Input id="confirmPassword" type="password" />
-                  </div>
-                  <Button disabled={saving}>
-                    {saving ? "Updating..." : "Update password"}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader>
-              <CardTitle>Two-Factor Authentication</CardTitle>
-              <CardDescription>
-                Add an extra layer of security to your account
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between space-x-2">
-                  <div className="space-y-0.5">
-                    <Label>Two-factor authentication</Label>
-                    <p className="text-xs text-muted-foreground">
-                      Enable two-factor authentication for your account
-                    </p>
-                  </div>
-                  <Switch id="twoFactor" />
-                </div>
-                <div className="flex items-center justify-between space-x-2">
-                  <div className="space-y-0.5">
-                    <Label>Recovery codes</Label>
-                    <p className="text-xs text-muted-foreground">
-                      Generate recovery codes for account access
-                    </p>
-                  </div>
-                  <Button variant="outline" size="sm">Generate</Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </TabsContent>
-
-      {/* Notifications Tab */}
-      <TabsContent value="notifications">
-        <Card>
-          <CardHeader>
-            <CardTitle>Notification Preferences</CardTitle>
-            <CardDescription>
-              Manage how you receive notifications and alerts
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium">Email Notifications</h3>
-                <div className="flex items-center justify-between space-x-2">
-                  <div className="space-y-0.5">
-                    <Label>Account updates</Label>
-                    <p className="text-xs text-muted-foreground">
-                      Receive emails about your account activity
-                    </p>
-                  </div>
-                  <Switch defaultChecked id="accountNotify" />
-                </div>
-                <div className="flex items-center justify-between space-x-2">
-                  <div className="space-y-0.5">
-                    <Label>Payment reminders</Label>
-                    <p className="text-xs text-muted-foreground">
-                      Get notified about upcoming payment due dates
-                    </p>
-                  </div>
-                  <Switch defaultChecked id="paymentNotify" />
-                </div>
-                <div className="flex items-center justify-between space-x-2">
-                  <div className="space-y-0.5">
-                    <Label>Marketing emails</Label>
-                    <p className="text-xs text-muted-foreground">
-                      Receive promotional offers and updates
-                    </p>
-                  </div>
-                  <Switch id="marketingNotify" />
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium">Application Notifications</h3>
-                <div className="flex items-center justify-between space-x-2">
-                  <div className="space-y-0.5">
-                    <Label>In-app notifications</Label>
-                    <p className="text-xs text-muted-foreground">
-                      Show notifications within the application
-                    </p>
-                  </div>
-                  <Switch defaultChecked id="inAppNotify" />
-                </div>
-                <div className="flex items-center justify-between space-x-2">
-                  <div className="space-y-0.5">
-                    <Label>Browser push notifications</Label>
-                    <p className="text-xs text-muted-foreground">
-                      Receive alerts even when the app is closed
-                    </p>
-                  </div>
-                  <Switch id="pushNotify" />
-                </div>
-              </div>
-              <Button onClick={handleSubmit} disabled={saving}>
-                {saving ? "Saving..." : "Save preferences"}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </TabsContent>
-
-      {/* Billing Tab */}
-      <TabsContent value="billing">
-        <div className="grid gap-6 md:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>Payment Methods</CardTitle>
-              <CardDescription>
-                Manage your saved payment methods
+                Access important documents related to your account
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="flex items-center justify-between p-3 border rounded-md">
                   <div className="flex items-center space-x-3">
-                    <CreditCard className="h-5 w-5 text-primary" />
+                    <FileText className="h-5 w-5 text-primary" />
                     <div>
-                      <p className="font-medium">•••• •••• •••• 4242</p>
-                      <p className="text-xs text-muted-foreground">Expires 04/2025</p>
+                      <p className="font-medium">Loan Agreement</p>
+                      <p className="text-xs text-muted-foreground">Updated on Jan 15, 2023</p>
                     </div>
                   </div>
-                  <Button variant="outline" size="sm">Edit</Button>
+                  <Button variant="outline" size="sm" onClick={() => handleAction("Document download")}>
+                    <Download className="h-4 w-4 mr-1" /> Download
+                  </Button>
                 </div>
-                <Button variant="outline" className="w-full">
-                  Add new payment method
-                </Button>
+                
+                <div className="flex items-center justify-between p-3 border rounded-md">
+                  <div className="flex items-center space-x-3">
+                    <FileText className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="font-medium">Payment Schedule</p>
+                      <p className="text-xs text-muted-foreground">Updated on Feb 03, 2023</p>
+                    </div>
+                  </div>
+                  <Button variant="outline" size="sm" onClick={() => handleAction("Document download")}>
+                    <Download className="h-4 w-4 mr-1" /> Download
+                  </Button>
+                </div>
+                
+                <div className="flex items-center justify-between p-3 border rounded-md">
+                  <div className="flex items-center space-x-3">
+                    <FileText className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="font-medium">Tax Certificate</p>
+                      <p className="text-xs text-muted-foreground">Updated on Mar 20, 2023</p>
+                    </div>
+                  </div>
+                  <Button variant="outline" size="sm" onClick={() => handleAction("Document download")}>
+                    <Download className="h-4 w-4 mr-1" /> Download
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader>
-              <CardTitle>Billing Information</CardTitle>
+              <CardTitle>Upload Documents</CardTitle>
               <CardDescription>
-                Update your billing address and information
+                Submit required documents for processing
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit}>
-                <div className="grid gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="billingName">Name on invoice</Label>
-                    <Input id="billingName" defaultValue="John Doe" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="billingEmail">Billing email</Label>
-                    <Input id="billingEmail" type="email" defaultValue="billing@example.com" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="billingAddress">Billing address</Label>
-                    <Input id="billingAddress" defaultValue="123 Main St, City" />
-                  </div>
-                  <Button disabled={saving}>
-                    {saving ? "Saving..." : "Save billing info"}
+              <div className="space-y-4">
+                <div className="border-2 border-dashed rounded-md p-6 text-center">
+                  <Upload className="h-8 w-8 mx-auto text-muted-foreground mb-2" />
+                  <p className="text-sm font-medium mb-1">Drag and drop files here</p>
+                  <p className="text-xs text-muted-foreground mb-3">
+                    Support for PDF, JPG, PNG up to 10MB
+                  </p>
+                  <Button variant="outline" size="sm" className="mx-auto">
+                    Browse files
                   </Button>
                 </div>
-              </form>
+                
+                <div className="space-y-2">
+                  <p className="text-sm font-medium">Required Documents:</p>
+                  <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
+                    <li>Proof of income</li>
+                    <li>Identification</li>
+                    <li>Proof of address</li>
+                  </ul>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
       </TabsContent>
 
-      {/* Support Tab */}
-      <TabsContent value="support">
+      {/* Statements Tab */}
+      <TabsContent value="statements">
+        <Card>
+          <CardHeader>
+            <CardTitle>Account Statements</CardTitle>
+            <CardDescription>
+              Access your monthly statements and transaction history
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                {[1, 2, 3, 4, 5, 6].map((month) => (
+                  <div key={month} className="border rounded-md p-4 text-center">
+                    <ClipboardList className="h-6 w-6 mx-auto text-primary mb-2" />
+                    <p className="text-sm font-medium">Statement {month}/2023</p>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="mt-2 w-full"
+                      onClick={() => handleAction("Statement download")}
+                    >
+                      <Download className="h-3 w-3 mr-1" /> Download
+                    </Button>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="flex justify-center mt-4">
+                <Button variant="outline">Load Previous Statements</Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </TabsContent>
+
+      {/* Payment History Tab */}
+      <TabsContent value="payments">
+        <Card>
+          <CardHeader>
+            <CardTitle>Payment History</CardTitle>
+            <CardDescription>
+              View your past payments and transaction details
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-3 text-left">Date</th>
+                      <th className="py-3 text-left">Description</th>
+                      <th className="py-3 text-left">Amount</th>
+                      <th className="py-3 text-left">Status</th>
+                      <th className="py-3 text-left">Receipt</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y">
+                    {[
+                      { date: "May 10, 2023", desc: "Monthly Payment", amount: "$250.00", status: "Completed" },
+                      { date: "Apr 10, 2023", desc: "Monthly Payment", amount: "$250.00", status: "Completed" },
+                      { date: "Mar 10, 2023", desc: "Monthly Payment", amount: "$250.00", status: "Completed" },
+                      { date: "Feb 10, 2023", desc: "Monthly Payment", amount: "$250.00", status: "Completed" },
+                      { date: "Jan 10, 2023", desc: "Monthly Payment", amount: "$250.00", status: "Completed" }
+                    ].map((payment, i) => (
+                      <tr key={i}>
+                        <td className="py-3">{payment.date}</td>
+                        <td className="py-3">{payment.desc}</td>
+                        <td className="py-3">{payment.amount}</td>
+                        <td className="py-3">
+                          <span className="inline-flex items-center rounded-full px-2 py-1 text-xs font-medium bg-green-50 text-green-700">
+                            {payment.status}
+                          </span>
+                        </td>
+                        <td className="py-3">
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => handleAction("Receipt download")}
+                          >
+                            <Download className="h-3 w-3" />
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              
+              <div className="flex justify-center mt-4">
+                <Button variant="outline">View More Transactions</Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </TabsContent>
+
+      {/* Service Requests Tab */}
+      <TabsContent value="requests">
         <div className="grid gap-6 md:grid-cols-2">
           <Card>
             <CardHeader>
-              <CardTitle>Help & Support</CardTitle>
+              <CardTitle>Service Requests</CardTitle>
               <CardDescription>
-                Access customer support and resources
+                Submit and track your service requests
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="p-4 border rounded-md">
-                  <h3 className="text-lg font-medium mb-2">Contact Support</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Our support team is available Monday-Friday, 9AM-5PM EST.
-                  </p>
-                  <Button className="mb-2 w-full">Submit a ticket</Button>
-                  <p className="text-sm">
-                    Or email us at:{" "}
-                    <a href="mailto:support@example.com" className="text-primary underline">
-                      support@example.com
-                    </a>
+                <div className="border rounded-md p-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <p className="font-medium">Payment Extension Request</p>
+                      <p className="text-xs text-muted-foreground mt-1">Submitted on May 5, 2023</p>
+                    </div>
+                    <span className="inline-flex items-center rounded-full px-2 py-1 text-xs font-medium bg-yellow-50 text-yellow-700">
+                      In Progress
+                    </span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Your request for a payment extension is being reviewed. We'll notify you once it's processed.
                   </p>
                 </div>
-                <div className="p-4 border rounded-md">
-                  <h3 className="text-lg font-medium mb-2">Live Chat</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Chat with a support representative in real-time.
+                
+                <div className="border rounded-md p-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <p className="font-medium">Address Change</p>
+                      <p className="text-xs text-muted-foreground mt-1">Submitted on Apr 15, 2023</p>
+                    </div>
+                    <span className="inline-flex items-center rounded-full px-2 py-1 text-xs font-medium bg-green-50 text-green-700">
+                      Completed
+                    </span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Your address has been updated successfully in our system.
                   </p>
-                  <Button variant="outline" className="w-full">Start chat</Button>
                 </div>
+                
+                <Button className="w-full">Create New Request</Button>
               </div>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader>
-              <CardTitle>Knowledge Base</CardTitle>
+              <CardTitle>Quick Services</CardTitle>
               <CardDescription>
-                Find answers to common questions
+                Access common self-service actions
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                <div className="p-4 border rounded-md">
-                  <h3 className="text-lg font-medium mb-2">Frequently Asked Questions</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>
-                      <a href="#" className="text-primary hover:underline">
-                        How do I update my account information?
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-primary hover:underline">
-                        Setting up two-factor authentication
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-primary hover:underline">
-                        Managing payment methods
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-primary hover:underline">
-                        Subscription and billing questions
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="p-4 border rounded-md">
-                  <h3 className="text-lg font-medium mb-2">Documentation</h3>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Browse our comprehensive documentation for detailed guides.
-                  </p>
-                  <Button variant="outline" className="w-full">View documentation</Button>
-                </div>
+              <div className="grid gap-3">
+                <Button variant="outline" className="justify-start" onClick={() => handleAction("Payment calculation")}>
+                  <Clock className="h-4 w-4 mr-2" />
+                  Calculate payoff amount
+                </Button>
+                
+                <Button variant="outline" className="justify-start" onClick={() => handleAction("Payment schedule")}>
+                  <ClipboardList className="h-4 w-4 mr-2" />
+                  Request payment schedule
+                </Button>
+                
+                <Button variant="outline" className="justify-start" onClick={() => handleAction("Address update")}>
+                  <Upload className="h-4 w-4 mr-2" />
+                  Update contact information
+                </Button>
+                
+                <Button variant="outline" className="justify-start" onClick={() => handleAction("Auto-pay")}>
+                  <Clock className="h-4 w-4 mr-2" />
+                  Set up automatic payments
+                </Button>
+                
+                <Button variant="outline" className="justify-start" onClick={() => handleAction("Hardship")}>
+                  <FileText className="h-4 w-4 mr-2" />
+                  Request hardship assistance
+                </Button>
               </div>
             </CardContent>
           </Card>

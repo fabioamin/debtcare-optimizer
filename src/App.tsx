@@ -14,6 +14,7 @@ import Insights from "./pages/Insights";
 import Communication from "./pages/Communication";
 import Payments from "./pages/Payments";
 import SelfService from "./pages/SelfService";
+import Settings from "./pages/Settings";
 import Portal from "./pages/Portal";
 import NotFound from "./pages/NotFound";
 
@@ -39,10 +40,12 @@ const App = () => (
               <Route path="/dashboard/payments" element={<Payments />} />
               <Route path="/dashboard/self-service" element={<SelfService />} />
               <Route path="/dashboard/portal" element={<Portal />} />
+              <Route path="/dashboard/settings" element={<Settings />} />
               <Route path="/dashboard/compliance" element={<Dashboard />} />
               <Route path="/dashboard/international" element={<Dashboard />} />
               <Route path="/dashboard/customers" element={<Dashboard />} />
-              <Route path="/dashboard/settings" element={<Dashboard />} />
+              <Route path="/dashboard/workflows" element={<Dashboard />} />
+              <Route path="/dashboard/apis" element={<Dashboard />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
-import SelfServicePanel from "@/components/dashboard/SelfServicePanel";
+import SettingsPanel from "@/components/dashboard/SettingsPanel";
 
-const SelfService = () => {
+const Settings = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
@@ -21,9 +21,9 @@ const SelfService = () => {
               <div className="bg-primary/10 p-6 rounded-lg border border-primary/20">
                 <div className="flex flex-col md:flex-row md:items-center justify-between">
                   <div>
-                    <h1 className="text-2xl font-bold">Self Service Portal</h1>
+                    <h1 className="text-2xl font-bold">Settings</h1>
                     <p className="text-muted-foreground mt-1">
-                      Access documents, statements, and request services
+                      Manage your account preferences and settings
                     </p>
                   </div>
                   <div className="flex gap-2 mt-4 md:mt-0">
@@ -33,13 +33,13 @@ const SelfService = () => {
                       </button>
                     </Link>
                     <span className="text-muted-foreground mx-1">/</span>
-                    <span className="text-sm font-medium">Self Service</span>
+                    <span className="text-sm font-medium">Settings</span>
                   </div>
                 </div>
               </div>
               
-              {/* Self Service Panel Component */}
-              <SelfServicePanel />
+              {/* Settings Panel Component */}
+              <SettingsPanel />
             </div>
           </main>
         </div>
@@ -48,4 +48,4 @@ const SelfService = () => {
   );
 };
 
-export default SelfService;
+export default Settings;
