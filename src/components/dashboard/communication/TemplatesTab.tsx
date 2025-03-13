@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useState } from "react";
 
 const TemplatesTab = () => {
+  const [selectedTemplate, setSelectedTemplate] = useState("reminder-7");
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div className="md:col-span-1 space-y-4">
@@ -57,7 +60,11 @@ const TemplatesTab = () => {
         <div className="space-y-4">
           <div className="flex justify-between items-center">
             <h3 className="font-medium">Edit Template</h3>
-            <Select defaultValue="reminder-7">
+            <Select 
+              defaultValue="reminder-7" 
+              value={selectedTemplate}
+              onValueChange={setSelectedTemplate}
+            >
               <SelectTrigger className="w-[220px]">
                 <SelectValue placeholder="Select template" />
               </SelectTrigger>
@@ -94,11 +101,11 @@ The DebtCare Team"
             <div className="bg-secondary/50 p-3 rounded-lg">
               <h4 className="text-sm font-medium mb-1">Available Variables</h4>
               <div className="flex flex-wrap gap-2">
-                <span className="text-xs bg-secondary px-2 py-1 rounded-md">{"{{customer.name}}"}</span>
-                <span className="text-xs bg-secondary px-2 py-1 rounded-md">{"{{payment.amount}}"}</span>
-                <span className="text-xs bg-secondary px-2 py-1 rounded-md">{"{{payment.dueDate}}"}</span>
-                <span className="text-xs bg-secondary px-2 py-1 rounded-md">{"{{payment.link}}"}</span>
-                <span className="text-xs bg-secondary px-2 py-1 rounded-md">{"{{company.name}}"}</span>
+                <span className="text-xs bg-secondary px-2 py-1 rounded-md">{'{{customer.name}}'}</span>
+                <span className="text-xs bg-secondary px-2 py-1 rounded-md">{'{{payment.amount}}'}</span>
+                <span className="text-xs bg-secondary px-2 py-1 rounded-md">{'{{payment.dueDate}}'}</span>
+                <span className="text-xs bg-secondary px-2 py-1 rounded-md">{'{{payment.link}}'}</span>
+                <span className="text-xs bg-secondary px-2 py-1 rounded-md">{'{{company.name}}'}</span>
               </div>
             </div>
           </div>
