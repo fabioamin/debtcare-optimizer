@@ -129,7 +129,8 @@
     "insights": "Insights de IA",
     "portfolio": "Portafolio",
     "strategy": "Estrategia",
-    "automatedWorkflows": "Flujos de Trabajo Automatizados & APIs"
+    "automatedWorkflows": "Flujos de Trabajo Automatizados",
+    "apis": "APIs"
   },
   "payments": {
     "title": "Opciones de Pago",

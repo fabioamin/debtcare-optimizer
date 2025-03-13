@@ -16,7 +16,8 @@ import {
   Layout,
   UserCircle,
   Workflow,
-  Zap
+  Zap,
+  Code
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
@@ -83,8 +84,13 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
     },
     { 
       icon: <Zap className="h-5 w-5" />, 
-      label: "Automated Workflows & APIs", 
-      path: "/dashboard/workflows-apis" 
+      label: t('dashboard.automatedWorkflows'), 
+      path: "/dashboard/workflows" 
+    },
+    { 
+      icon: <Code className="h-5 w-5" />, 
+      label: t('dashboard.apis'), 
+      path: "/dashboard/apis" 
     },
     { 
       icon: <Shield className="h-5 w-5" />, 

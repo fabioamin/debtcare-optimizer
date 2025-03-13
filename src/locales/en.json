@@ -129,7 +129,8 @@
     "insights": "AI Insights",
     "portfolio": "Portfolio",
     "strategy": "Strategy",
-    "automatedWorkflows": "Automated Workflows & APIs"
+    "automatedWorkflows": "Automated Workflows",
+    "apis": "APIs"
   },
   "payments": {
     "title": "Payment Options",
