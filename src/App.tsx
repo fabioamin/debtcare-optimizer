@@ -13,6 +13,7 @@ import Strategy from "./pages/Strategy";
 import Insights from "./pages/Insights";
 import Communication from "./pages/Communication";
 import Payments from "./pages/Payments";
+import Workflows from "./pages/Workflows";
 import SelfService from "./pages/SelfService";
 import WhiteLabel from "./pages/WhiteLabel";
 import Settings from "./pages/Settings";
@@ -39,6 +40,7 @@ const App = () => (
               <Route path="/dashboard/insights" element={<Insights />} />
               <Route path="/dashboard/communication" element={<Communication />} />
               <Route path="/dashboard/payments" element={<Payments />} />
+              <Route path="/dashboard/workflows" element={<Workflows />} />
               
               {/* Customer Interface module with nested routes */}
               <Route path="/dashboard/white-label" element={<WhiteLabel />}>
@@ -55,7 +57,6 @@ const App = () => (
               <Route path="/dashboard/compliance" element={<Dashboard />} />
               <Route path="/dashboard/international" element={<Dashboard />} />
               <Route path="/dashboard/customers" element={<Dashboard />} />
-              <Route path="/dashboard/workflows" element={<Dashboard />} />
               <Route path="/dashboard/apis" element={<Dashboard />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
