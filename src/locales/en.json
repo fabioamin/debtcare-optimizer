@@ -122,7 +122,10 @@
   },
   "dashboard": {
     "communications": "Communications",
-    "payments": "Payments"
+    "payments": "Payments",
+    "compliance": "Compliance",
+    "international": "International",
+    "customers": "Customers"
   },
   "payments": {
     "title": "Payment Options",
