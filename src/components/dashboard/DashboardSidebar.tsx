@@ -2,7 +2,6 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Card } from "@/components/ui/card";
 import { 
   Home, 
   BarChart3, 
@@ -16,6 +15,13 @@ import {
   Users
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton
+} from "@/components/ui/sidebar";
 
 interface DashboardSidebarProps {
   open: boolean;
@@ -81,23 +87,25 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
   if (!open) return null;
 
   return (
-    <Card className="h-screen w-64 fixed left-0 top-16 border-t-0 rounded-none pt-4 animate-fade-in overflow-auto z-10">
-      <nav className="space-y-1 px-2">
-        {menuItems.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={cn(
-              "flex items-center gap-2 px-3 py-2 rounded-md hover:bg-muted transition-colors",
-              location.pathname === item.path ? "bg-muted font-medium" : ""
-            )}
-          >
-            {item.icon}
-            <span>{item.label}</span>
-          </Link>
-        ))}
-      </nav>
-    </Card>
+    <Sidebar side="left" variant="sidebar" collapsible="none" className="z-10 top-16 border-t-0 rounded-none">
+      <SidebarContent className="pt-4">
+        <SidebarMenu>
+          {menuItems.map((item) => (
+            <SidebarMenuItem key={item.path}>
+              <SidebarMenuButton
+                asChild
+                isActive={location.pathname === item.path}
+              >
+                <Link to={item.path} className="flex items-center gap-2">
+                  {item.icon}
+                  <span>{item.label}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarContent>
+    </Sidebar>
   );
 };
 

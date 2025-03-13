@@ -5,27 +5,20 @@ import { Upload, Database } from "lucide-react";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import PortfolioManagement from "@/components/dashboard/PortfolioManagement";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PortfolioUpload from "@/components/dashboard/PortfolioUpload";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Portfolio = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("manage");
 
   return (
-    <div className="h-screen bg-background flex">
-      {/* Dashboard Sidebar */}
-      <DashboardSidebar open={sidebarOpen} />
-      
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Dashboard Header */}
-        <DashboardHeader onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
-        
-        {/* Main Content */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6">
-          <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-muted/40">
+      <DashboardHeader onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
+      <div className="flex">
+        <DashboardSidebar open={sidebarOpen} />
+        <main className="flex-1 p-6 pt-16 md:pt-20">
+          <div className="container mx-auto max-w-7xl space-y-6">
             {/* Page Header */}
             <div className="bg-primary/10 p-6 rounded-lg border border-primary/20">
               <div className="flex flex-col md:flex-row md:items-center justify-between">
