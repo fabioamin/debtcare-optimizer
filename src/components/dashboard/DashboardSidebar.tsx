@@ -117,25 +117,28 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
   if (!open) return null;
 
   return (
-    <Sidebar side="left" variant="sidebar" collapsible="none" className="z-10 top-16 border-t-0 rounded-none">
-      <SidebarContent className="pt-4">
-        <SidebarMenu>
+    <div className="h-screen fixed top-16 left-0 z-10 bg-sidebar border-r w-64">
+      <div className="overflow-y-auto h-[calc(100vh-4rem)] pt-4">
+        <ul className="space-y-1 px-2">
           {menuItems.map((item) => (
-            <SidebarMenuItem key={item.path}>
-              <SidebarMenuButton
-                asChild
-                isActive={location.pathname === item.path}
+            <li key={item.path}>
+              <Link
+                to={item.path}
+                className={cn(
+                  "flex items-center gap-2 px-3 py-2 rounded-md transition-colors",
+                  location.pathname === item.path
+                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                    : "text-sidebar-foreground hover:bg-sidebar-accent/70 hover:text-sidebar-accent-foreground"
+                )}
               >
-                <Link to={item.path} className="flex items-center gap-2">
-                  {item.icon}
-                  <span>{item.label}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+                {item.icon}
+                <span className="truncate">{item.label}</span>
+              </Link>
+            </li>
           ))}
-        </SidebarMenu>
-      </SidebarContent>
-    </Sidebar>
+        </ul>
+      </div>
+    </div>
   );
 };
 
