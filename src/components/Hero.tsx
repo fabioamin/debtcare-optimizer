@@ -114,7 +114,9 @@ const Hero = () => {
                             <p className="text-xs text-muted-foreground">Real-time behavioral analysis</p>
                           </div>
                         </div>
-                        <Button variant="outline" size="sm">View</Button>
+                        <Button variant="outline" size="sm" asChild>
+                          <Link to="/dashboard">View</Link>
+                        </Button>
                       </div>
                       <div className="p-4">
                         <div className="space-y-4">
