@@ -14,6 +14,7 @@ import Insights from "./pages/Insights";
 import Communication from "./pages/Communication";
 import Payments from "./pages/Payments";
 import SelfService from "./pages/SelfService";
+import Portal from "./pages/Portal";
 import NotFound from "./pages/NotFound";
 
 import './i18n';
@@ -37,6 +38,7 @@ const App = () => (
               <Route path="/dashboard/communication" element={<Communication />} />
               <Route path="/dashboard/payments" element={<Payments />} />
               <Route path="/dashboard/self-service" element={<SelfService />} />
+              <Route path="/dashboard/portal" element={<Portal />} />
               <Route path="/dashboard/compliance" element={<Dashboard />} />
               <Route path="/dashboard/international" element={<Dashboard />} />
               <Route path="/dashboard/customers" element={<Dashboard />} />
