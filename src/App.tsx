@@ -46,11 +46,14 @@ function App() {
                 <Route path="/dashboard/compliance" element={<DashboardLayout><Compliance /></DashboardLayout>} />
                 <Route path="/dashboard/international" element={<DashboardLayout><International /></DashboardLayout>} />
                 <Route path="/dashboard/customers" element={<DashboardLayout><Customers /></DashboardLayout>} />
+                
+                {/* Nested routes for white-label */}
                 <Route path="/dashboard/white-label" element={<DashboardLayout><WhiteLabel /></DashboardLayout>}>
                   <Route index element={<Portal />} />
                   <Route path="portal" element={<Portal />} />
                   <Route path="self-service" element={<SelfService />} />
                 </Route>
+                
                 <Route path="/dashboard/settings" element={<DashboardLayout><Settings /></DashboardLayout>} />
                 
                 <Route path="*" element={<NotFound />} />

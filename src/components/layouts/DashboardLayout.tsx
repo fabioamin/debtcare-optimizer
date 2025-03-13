@@ -15,11 +15,20 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
+    <div className="flex h-screen bg-background overflow-hidden">
+      {/* Fixed header at top */}
       <DashboardHeader onMenuClick={toggleSidebar} />
+      
+      {/* Fixed sidebar on left */}
       <DashboardSidebar open={sidebarOpen} />
       
-      <main className={`flex-1 overflow-y-auto transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'}`} style={{ marginTop: '4rem' }}>
+      {/* Main content area with proper offsets */}
+      <main 
+        className={`flex-1 overflow-y-auto transition-all duration-300 ${
+          sidebarOpen ? 'ml-64' : 'ml-0'
+        }`} 
+        style={{ paddingTop: '4rem' }}
+      >
         <div className="p-6">
           {children}
         </div>
