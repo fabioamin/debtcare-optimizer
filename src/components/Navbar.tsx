@@ -69,7 +69,7 @@ const Navbar = () => {
               <Link to="/dashboard">{t('nav.demo')}</Link>
             </Button>
             <Button asChild>
-              <Link to="/dashboard">
+              <Link to="/login">
                 <LogIn className="mr-2 h-4 w-4" />
                 {t('nav.login')}
               </Link>
@@ -137,7 +137,7 @@ const Navbar = () => {
               <Link to="/dashboard" onClick={closeMenu}>{t('nav.demo')}</Link>
             </Button>
             <Button asChild className="w-full justify-center">
-              <Link to="/dashboard" onClick={closeMenu}>
+              <Link to="/login" onClick={closeMenu}>
                 <LogIn className="mr-2 h-4 w-4" />
                 {t('nav.login')}
               </Link>
