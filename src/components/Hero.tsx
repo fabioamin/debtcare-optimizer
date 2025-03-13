@@ -15,7 +15,8 @@ const Hero = () => {
   return (
     <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-4">
       <div className="container mx-auto max-w-7xl">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          {/* Text content - now appears first on mobile */}
           <div className="w-full lg:w-1/2 space-y-6">
             <div className="inline-flex items-center rounded-full px-3 py-1 text-sm bg-primary/10 text-primary animate-fade-in opacity-0" style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}>
               <ShieldCheck className="h-4 w-4 mr-2" />
@@ -86,6 +87,7 @@ const Hero = () => {
             </div>
           </div>
           
+          {/* Customer Insights UI - now appears second on mobile */}
           <div 
             className={cn(
               "w-full lg:w-1/2 relative opacity-0 transition-all duration-1000 delay-300",
