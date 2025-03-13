@@ -1,5 +1,16 @@
 
-import { Mail, MessageSquare, Phone, Globe } from "lucide-react";
+import { 
+  Mail, 
+  MessageSquare, 
+  Phone, 
+  Globe, 
+  Facebook, 
+  Instagram, 
+  Linkedin,
+  Twitter, 
+  MessageCircle, 
+  Send 
+} from "lucide-react";
 import ChannelCard from "./ChannelCard";
 
 const ChannelsTab = () => {
@@ -23,6 +34,24 @@ const ChannelsTab = () => {
       ],
     },
     {
+      icon: MessageCircle,
+      title: "WhatsApp",
+      stats: [
+        { label: "Read Rate", value: "95%" },
+        { label: "Response Rate", value: "62%" },
+        { label: "Templates", value: "10" },
+      ],
+    },
+    {
+      icon: Send,
+      title: "Telegram",
+      stats: [
+        { label: "Read Rate", value: "87%" },
+        { label: "Response Rate", value: "54%" },
+        { label: "Templates", value: "7" },
+      ],
+    },
+    {
       icon: Phone,
       title: "Phone",
       stats: [
@@ -38,6 +67,42 @@ const ChannelsTab = () => {
         { label: "Visit Rate", value: "28%" },
         { label: "Action Rate", value: "22%" },
         { label: "Notifications", value: "10" },
+      ],
+    },
+    {
+      icon: Facebook,
+      title: "Facebook",
+      stats: [
+        { label: "Reach", value: "35%" },
+        { label: "Engagement", value: "18%" },
+        { label: "Messages", value: "42" },
+      ],
+    },
+    {
+      icon: Instagram,
+      title: "Instagram",
+      stats: [
+        { label: "Reach", value: "48%" },
+        { label: "Engagement", value: "24%" },
+        { label: "DMs", value: "36" },
+      ],
+    },
+    {
+      icon: Twitter,
+      title: "Twitter",
+      stats: [
+        { label: "Impressions", value: "22%" },
+        { label: "Engagement", value: "12%" },
+        { label: "Messages", value: "28" },
+      ],
+    },
+    {
+      icon: Linkedin,
+      title: "LinkedIn",
+      stats: [
+        { label: "Impressions", value: "19%" },
+        { label: "Response Rate", value: "15%" },
+        { label: "Messages", value: "22" },
       ],
     },
   ];
