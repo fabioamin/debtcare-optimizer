@@ -12,7 +12,10 @@ import {
   CreditCard,
   Shield,
   Globe,
-  Users
+  Users,
+  Layout,
+  UserCircle,
+  Workflow
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
@@ -61,6 +64,21 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
       icon: <CreditCard className="h-5 w-5" />, 
       label: t('dashboard.payments'), 
       path: "/dashboard/payments" 
+    },
+    { 
+      icon: <UserCircle className="h-5 w-5" />, 
+      label: t('dashboard.selfService'), 
+      path: "/dashboard/self-service" 
+    },
+    { 
+      icon: <Layout className="h-5 w-5" />, 
+      label: t('dashboard.portal'), 
+      path: "/dashboard/portal" 
+    },
+    { 
+      icon: <Workflow className="h-5 w-5" />, 
+      label: t('dashboard.automation'), 
+      path: "/dashboard/automation" 
     },
     { 
       icon: <Shield className="h-5 w-5" />, 
