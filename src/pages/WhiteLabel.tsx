@@ -1,12 +1,11 @@
 
 import { useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Layout, UserCircle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const WhiteLabel = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -15,7 +14,7 @@ const WhiteLabel = () => {
   const currentPath = location.pathname;
   
   // Determine which tab is active based on the current route
-  const activeTab = currentPath.includes("/dashboard/self-service") 
+  const activeTab = currentPath.includes("/dashboard/white-label/self-service") 
     ? "self-service" 
     : "portal";
 

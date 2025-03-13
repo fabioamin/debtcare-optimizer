@@ -40,7 +40,7 @@ const App = () => (
               <Route path="/dashboard/communication" element={<Communication />} />
               <Route path="/dashboard/payments" element={<Payments />} />
               
-              {/* White Label module with nested routes */}
+              {/* Customer Interface module with nested routes */}
               <Route path="/dashboard/white-label" element={<WhiteLabel />}>
                 <Route index element={<Navigate to="/dashboard/white-label/portal" replace />} />
                 <Route path="portal" element={<Portal />} />
