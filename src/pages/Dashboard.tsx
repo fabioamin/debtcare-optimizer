@@ -18,7 +18,8 @@ import {
   Search,
   UserCircle2,
   Target,
-  Wand2
+  Wand2,
+  Briefcase
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,6 +32,7 @@ import AnalyticsCard from "@/components/dashboard/AnalyticsCard";
 import AiInsightsPanel from "@/components/dashboard/AiInsightsPanel";
 import PaymentOptionsCard from "@/components/dashboard/PaymentOptionsCard";
 import CommunicationPanel from "@/components/dashboard/CommunicationPanel";
+import PortfolioManagement from "@/components/dashboard/PortfolioManagement";
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -88,8 +90,12 @@ const Dashboard = () => {
             </div>
             
             {/* Main Functionality Tabs */}
-            <Tabs defaultValue="strategy" className="w-full">
+            <Tabs defaultValue="portfolio" className="w-full">
               <TabsList className="w-full flex flex-wrap md:flex-nowrap mb-4">
+                <TabsTrigger value="portfolio" className="flex-1">
+                  <Briefcase className="h-4 w-4 mr-2" />
+                  Portfólio
+                </TabsTrigger>
                 <TabsTrigger value="strategy" className="flex-1">
                   <Target className="h-4 w-4 mr-2" />
                   Strategy Creation
@@ -115,7 +121,13 @@ const Dashboard = () => {
                   Compliance
                 </TabsTrigger>
               </TabsList>
+
+              {/* Portfolio Management Tab */}
+              <TabsContent value="portfolio" className="space-y-4 py-2">
+                <PortfolioManagement />
+              </TabsContent>
               
+              {/* Strategy Creation Tab */}
               <TabsContent value="strategy" className="space-y-4 py-2">
                 <Card>
                   <CardHeader>

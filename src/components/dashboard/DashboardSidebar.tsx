@@ -1,5 +1,4 @@
-
-import { Home, CreditCard, MessageSquareText, Brain, ChartLine, ShieldCheck, Settings, Globe, Zap, HelpCircle, LogOut, Target } from "lucide-react";
+import { Home, CreditCard, MessageSquareText, Brain, ChartLine, ShieldCheck, Settings, Globe, Zap, HelpCircle, LogOut, Target, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -11,6 +10,7 @@ interface DashboardSidebarProps {
 const DashboardSidebar = ({ open }: DashboardSidebarProps) => {
   const navItems = [
     { name: "Dashboard", icon: Home, path: "/dashboard" },
+    { name: "Portfolio", icon: Briefcase, path: "/dashboard/portfolio" },
     { name: "Strategy Creation", icon: Target, path: "/dashboard/strategy" },
     { name: "AI Insights", icon: Brain, path: "/dashboard/insights" },
     { name: "Communication", icon: MessageSquareText, path: "/dashboard/communication" },
