@@ -121,11 +121,11 @@ The DebtCare Team"
                     <div className="bg-secondary/50 p-3 rounded-lg">
                       <h4 className="text-sm font-medium mb-1">Available Variables</h4>
                       <div className="flex flex-wrap gap-2">
-                        <span className="text-xs bg-secondary px-2 py-1 rounded-md">{{'{{'}}customer.name{{'}}'}}</span>
-                        <span className="text-xs bg-secondary px-2 py-1 rounded-md">{{'{{'}}payment.amount{{'}}'}}</span>
-                        <span className="text-xs bg-secondary px-2 py-1 rounded-md">{{'{{'}}payment.dueDate{{'}}'}}</span>
-                        <span className="text-xs bg-secondary px-2 py-1 rounded-md">{{'{{'}}payment.link{{'}}'}}</span>
-                        <span className="text-xs bg-secondary px-2 py-1 rounded-md">{{'{{'}}company.name{{'}}'}}</span>
+                        <span className="text-xs bg-secondary px-2 py-1 rounded-md">{"{{customer.name}}"}</span>
+                        <span className="text-xs bg-secondary px-2 py-1 rounded-md">{"{{payment.amount}}"}</span>
+                        <span className="text-xs bg-secondary px-2 py-1 rounded-md">{"{{payment.dueDate}}"}</span>
+                        <span className="text-xs bg-secondary px-2 py-1 rounded-md">{"{{payment.link}}"}</span>
+                        <span className="text-xs bg-secondary px-2 py-1 rounded-md">{"{{company.name}}"}</span>
                       </div>
                     </div>
                   </div>
