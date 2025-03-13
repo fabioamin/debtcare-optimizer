@@ -24,4 +24,12 @@ export interface User {
   email: string;
   role: UserRole;
   avatar?: string;
+  active?: boolean;
+}
+
+export interface UserFormData {
+  name: string;
+  email: string;
+  role: UserRole;
+  password?: string;
 }

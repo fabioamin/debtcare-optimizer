@@ -1,6 +1,5 @@
-
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { User, UserRole, RolePermissions } from "@/types/auth";
+import { User, UserRole, RolePermissions, UserFormData } from "@/types/auth";
 import { toast } from "sonner";
 
 interface AuthContextType {
@@ -11,9 +10,12 @@ interface AuthContextType {
   login: (credentials: { email: string; password: string }) => Promise<void>;
   logout: () => void;
   updateUserRole: (userId: string, newRole: UserRole) => Promise<void>;
+  getUsers: () => User[];
+  addUser: (userData: UserFormData) => Promise<User>;
+  updateUser: (userId: string, userData: Partial<UserFormData>) => Promise<User>;
+  deleteUser: (userId: string) => Promise<void>;
 }
 
-// Mock permissions for each role
 export const ROLE_PERMISSIONS: RolePermissions[] = [
   {
     role: 'system_admin',
@@ -65,35 +67,38 @@ export const ROLE_PERMISSIONS: RolePermissions[] = [
   }
 ];
 
-// Mock user for demonstration
-const MOCK_USERS: User[] = [
+const INITIAL_MOCK_USERS: User[] = [
   {
     id: '1',
     name: 'Admin',
     email: 'admin@example.com',
     role: 'system_admin',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin',
+    active: true
   },
   {
     id: '2',
     name: 'João Agente',
     email: 'joao@example.com',
     role: 'collection_agent',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=joao'
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=joao',
+    active: true
   },
   {
     id: '3',
     name: 'Maria Gestora',
     email: 'maria@example.com',
     role: 'collection_manager',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=maria'
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=maria',
+    active: true
   },
   {
     id: '4',
     name: 'Carlos Empresa',
     email: 'carlos@example.com',
     role: 'company_admin',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=carlos'
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=carlos',
+    active: true
   }
 ];
 
@@ -101,17 +106,15 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [users, setUsers] = useState<User[]>(INITIAL_MOCK_USERS);
   
-  // Simulate loading a user on app start
   useEffect(() => {
-    // For demo, use the first user
-    setUser(MOCK_USERS[0]);
+    setUser(users[0]);
   }, []);
 
   const login = async (credentials: { email: string; password: string }) => {
     try {
-      // In a real app, this would be an API call
-      const foundUser = MOCK_USERS.find(u => u.email === credentials.email);
+      const foundUser = users.find(u => u.email === credentials.email && u.active !== false);
       
       if (foundUser) {
         setUser(foundUser);
@@ -149,20 +152,74 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const updateUserRole = async (userId: string, newRole: UserRole) => {
-    // In a real app, this would be an API call
-    const updatedUsers = MOCK_USERS.map(u => 
+    const updatedUsers = users.map(u => 
       u.id === userId ? { ...u, role: newRole } : u
     );
     
-    // Update the mock data
-    Object.assign(MOCK_USERS, updatedUsers);
+    setUsers(updatedUsers);
     
-    // If the current user was updated, refresh their state
     if (user && user.id === userId) {
       setUser({ ...user, role: newRole });
     }
     
     toast.success("Perfil de acesso atualizado com sucesso");
+  };
+
+  const getUsers = (): User[] => {
+    return users;
+  };
+
+  const addUser = async (userData: UserFormData): Promise<User> => {
+    const newUser: User = {
+      id: `${users.length + 1}`,
+      name: userData.name,
+      email: userData.email,
+      role: userData.role,
+      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${userData.name.toLowerCase().replace(/\s/g, '')}`,
+      active: true
+    };
+
+    const updatedUsers = [...users, newUser];
+    setUsers(updatedUsers);
+    
+    toast.success(`Usuário ${newUser.name} adicionado com sucesso`);
+    return newUser;
+  };
+
+  const updateUser = async (userId: string, userData: Partial<UserFormData>): Promise<User> => {
+    const userIndex = users.findIndex(u => u.id === userId);
+    
+    if (userIndex === -1) {
+      toast.error("Usuário não encontrado");
+      throw new Error("User not found");
+    }
+    
+    const updatedUser = {
+      ...users[userIndex],
+      ...userData
+    };
+    
+    const updatedUsers = [...users];
+    updatedUsers[userIndex] = updatedUser;
+    
+    setUsers(updatedUsers);
+    
+    if (user && user.id === userId) {
+      setUser(updatedUser);
+    }
+    
+    toast.success(`Usuário ${updatedUser.name} atualizado com sucesso`);
+    return updatedUser;
+  };
+
+  const deleteUser = async (userId: string): Promise<void> => {
+    const updatedUsers = users.map(u => 
+      u.id === userId ? { ...u, active: false } : u
+    );
+    
+    setUsers(updatedUsers);
+    
+    toast.success("Usuário removido com sucesso");
   };
 
   return (
@@ -173,7 +230,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       hasRole,
       login,
       logout,
-      updateUserRole
+      updateUserRole,
+      getUsers,
+      addUser,
+      updateUser,
+      deleteUser
     }}>
       {children}
     </AuthContext.Provider>
