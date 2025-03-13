@@ -1,0 +1,126 @@
+
+{
+  "nav": {
+    "solutions": "Solutions",
+    "features": "Features",
+    "testimonials": "Success Stories",
+    "contact": "Contact",
+    "demo": "Demo",
+    "login": "Login"
+  },
+  "hero": {
+    "tagline": "Humanized Debt Resolution",
+    "title": "Transform Debt Recovery with",
+    "highlight": "Intelligence",
+    "description": "DebtCare combines AI-powered insights, empathetic communication, and flexible payment options to transform debt recovery into a positive experience for both businesses and customers.",
+    "cta": {
+      "getStarted": "Get Started",
+      "viewSolutions": "View Solutions"
+    },
+    "stats": {
+      "recoveryRate": "98% Recovery Rate",
+      "customerRating": "4.8/5 Customer Rating",
+      "fasterResolution": "60% Faster Resolution"
+    }
+  },
+  "solutions": {
+    "title": "Tailored Solutions for Every Industry",
+    "subtitle": "DebtCare offers specialized approaches for different sectors, combining industry-specific knowledge with our core technology platform.",
+    "financial": {
+      "title": "For Financial Institutions",
+      "description": "Empower banks and lenders with a complete debt recovery platform that maintains customer relationships and maximizes return."
+    },
+    "collection": {
+      "title": "For Collection Agencies",
+      "description": "Transform your agency with digital-first recovery approaches that increase effectiveness while reducing operational costs."
+    },
+    "debtBuyers": {
+      "title": "For Debt Buyers",
+      "description": "Maximize portfolio returns with data-driven insights that identify the most promising accounts and optimal recovery strategies."
+    },
+    "service": {
+      "title": "For Service Providers",
+      "description": "Maintain customer goodwill while effectively managing overdue accounts with our customer-centric recovery solutions."
+    },
+    "learnMore": "Learn More"
+  },
+  "features": {
+    "title": "Powerful Features for Modern Debt Recovery",
+    "subtitle": "Our platform combines the best practices from leading debt recovery solutions, creating a comprehensive system that prioritizes both efficiency and human connection."
+  },
+  "communication": {
+    "title": "Communications",
+    "subtitle": "Manage all customer communications across multiple channels",
+    "tabs": {
+      "channels": "Channels",
+      "templates": "Templates",
+      "scheduler": "Scheduler"
+    },
+    "channelCard": {
+      "stats": {
+        "deliveryRate": "Delivery Rate",
+        "responseRate": "Response Rate",
+        "avgResponse": "Avg. Response",
+        "costPerMsg": "Cost per Msg"
+      },
+      "manage": "Manage",
+      "loading": "Loading...",
+      "settings": "Settings",
+      "channelStatus": "Channel Status",
+      "enableDisable": "Enable or disable this communication channel",
+      "notificationPrefs": "Notification Preferences",
+      "notifications": {
+        "newMessage": "New message alerts",
+        "delivery": "Delivery receipts",
+        "read": "Read receipts"
+      },
+      "messageDelivery": "Message Delivery",
+      "deliveryOptions": {
+        "immediate": "Immediate",
+        "scheduled": "Scheduled",
+        "workingHours": "Working Hours Only (9AM-5PM)"
+      },
+      "cancel": "Cancel",
+      "saveChanges": "Save Changes",
+      "success": {
+        "updated": "{channel} settings updated",
+        "description": "Your {channel} channel configuration has been saved."
+      },
+      "status": {
+        "enabled": "{channel} channel enabled",
+        "disabled": "{channel} channel disabled",
+        "description": "The {channel} communication channel has been {status}."
+      }
+    },
+    "templates": {
+      "categories": "Template Categories",
+      "new": "New",
+      "channelType": "Channel Type",
+      "createNew": "Create New Template",
+      "editTemplate": "Edit Template",
+      "templateName": "Template Name",
+      "subjectLine": "Subject Line",
+      "messageContent": "Message Content",
+      "variables": "Available Variables",
+      "delete": "Delete",
+      "preview": "Preview",
+      "saving": "Saving...",
+      "saveTemplate": "Save Template",
+      "success": {
+        "saved": "Template saved successfully",
+        "description": "Your template has been updated and is ready to use."
+      },
+      "error": {
+        "cannotDelete": "Cannot delete",
+        "description": "You must have at least one template."
+      },
+      "deleted": {
+        "title": "Template deleted",
+        "description": "The template has been removed."
+      }
+    }
+  },
+  "dashboard": {
+    "communications": "Communications"
+  }
+}

@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { Menu, X, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
+import LanguageSelector from "./LanguageSelector";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t } = useTranslation();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -47,43 +50,47 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <Link to="/#solutions" className="text-foreground/80 hover:text-primary transition-colors">
-              Solutions
+              {t('nav.solutions')}
             </Link>
             <Link to="/#features" className="text-foreground/80 hover:text-primary transition-colors">
-              Features
+              {t('nav.features')}
             </Link>
             <Link to="/#testimonials" className="text-foreground/80 hover:text-primary transition-colors">
-              Success Stories
+              {t('nav.testimonials')}
             </Link>
             <Link to="/#contact" className="text-foreground/80 hover:text-primary transition-colors">
-              Contact
+              {t('nav.contact')}
             </Link>
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
+            <LanguageSelector />
             <Button variant="outline" asChild>
-              <Link to="/dashboard">Demo</Link>
+              <Link to="/dashboard">{t('nav.demo')}</Link>
             </Button>
             <Button asChild>
               <Link to="/dashboard">
                 <LogIn className="mr-2 h-4 w-4" />
-                Login
+                {t('nav.login')}
               </Link>
             </Button>
           </div>
 
           {/* Mobile menu button */}
-          <button
-            className="md:hidden flex items-center"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageSelector />
+            <button
+              className="flex items-center"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -102,37 +109,37 @@ const Navbar = () => {
             className="block py-2 text-foreground/80 hover:text-primary"
             onClick={closeMenu}
           >
-            Solutions
+            {t('nav.solutions')}
           </Link>
           <Link
             to="/#features"
             className="block py-2 text-foreground/80 hover:text-primary"
             onClick={closeMenu}
           >
-            Features
+            {t('nav.features')}
           </Link>
           <Link
             to="/#testimonials"
             className="block py-2 text-foreground/80 hover:text-primary"
             onClick={closeMenu}
           >
-            Success Stories
+            {t('nav.testimonials')}
           </Link>
           <Link
             to="/#contact"
             className="block py-2 text-foreground/80 hover:text-primary"
             onClick={closeMenu}
           >
-            Contact
+            {t('nav.contact')}
           </Link>
           <div className="flex flex-col gap-2 pt-4 border-t border-border">
             <Button variant="outline" asChild className="w-full justify-center">
-              <Link to="/dashboard" onClick={closeMenu}>Demo</Link>
+              <Link to="/dashboard" onClick={closeMenu}>{t('nav.demo')}</Link>
             </Button>
             <Button asChild className="w-full justify-center">
               <Link to="/dashboard" onClick={closeMenu}>
                 <LogIn className="mr-2 h-4 w-4" />
-                Login
+                {t('nav.login')}
               </Link>
             </Button>
           </div>

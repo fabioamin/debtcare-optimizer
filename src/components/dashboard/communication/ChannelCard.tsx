@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { useTranslation } from "react-i18next";
 
 interface ChannelCardProps {
   icon: LucideIcon;
@@ -22,6 +23,7 @@ const ChannelCard = ({ icon: Icon, title, stats }: ChannelCardProps) => {
   const [isEnabled, setIsEnabled] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
   const { toast } = useToast();
+  const { t } = useTranslation();
   
   const handleManage = () => {
     setIsLoading(true);
@@ -41,17 +43,23 @@ const ChannelCard = ({ icon: Icon, title, stats }: ChannelCardProps) => {
       setIsLoading(false);
       setShowDetails(false);
       
-      toast.success(`${title} settings updated`, {
-        description: `Your ${title} channel configuration has been saved.`
+      toast.success(t('communication.channelCard.success.updated', { channel: title }), {
+        description: t('communication.channelCard.success.description', { channel: title })
       });
     }, 800);
   };
   
   const toggleChannel = (checked: boolean) => {
     setIsEnabled(checked);
-    toast.info(`${title} channel ${checked ? 'enabled' : 'disabled'}`, {
-      description: `The ${title} communication channel has been ${checked ? 'enabled' : 'disabled'}.`
-    });
+    toast.info(
+      t(checked ? 'communication.channelCard.status.enabled' : 'communication.channelCard.status.disabled', { channel: title }), 
+      {
+        description: t('communication.channelCard.status.description', { 
+          channel: title, 
+          status: t(checked ? 'enabled' : 'disabled') 
+        })
+      }
+    );
   };
   
   return (
@@ -81,7 +89,7 @@ const ChannelCard = ({ icon: Icon, title, stats }: ChannelCardProps) => {
             onClick={handleManage}
             disabled={isLoading}
           >
-            {isLoading ? "Loading..." : "Manage"}
+            {isLoading ? t('communication.channelCard.loading') : t('communication.channelCard.manage')}
           </Button>
         </CardFooter>
       </Card>
@@ -91,15 +99,15 @@ const ChannelCard = ({ icon: Icon, title, stats }: ChannelCardProps) => {
           <DialogHeader>
             <DialogTitle className="flex items-center">
               <Icon className="mr-2 h-5 w-5" />
-              {title} Settings
+              {title} {t('communication.channelCard.settings')}
             </DialogTitle>
           </DialogHeader>
           
           <div className="py-4 space-y-4">
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <h4 className="font-medium">Channel Status</h4>
-                <p className="text-sm text-muted-foreground">Enable or disable this communication channel</p>
+                <h4 className="font-medium">{t('communication.channelCard.channelStatus')}</h4>
+                <p className="text-sm text-muted-foreground">{t('communication.channelCard.enableDisable')}</p>
               </div>
               <Switch 
                 checked={isEnabled}
@@ -108,9 +116,13 @@ const ChannelCard = ({ icon: Icon, title, stats }: ChannelCardProps) => {
             </div>
             
             <div className="space-y-2">
-              <Label>Notification Preferences</Label>
+              <Label>{t('communication.channelCard.notificationPrefs')}</Label>
               <div className="space-y-2">
-                {["New message alerts", "Delivery receipts", "Read receipts"].map((pref, idx) => (
+                {[
+                  t('communication.channelCard.notifications.newMessage'),
+                  t('communication.channelCard.notifications.delivery'),
+                  t('communication.channelCard.notifications.read')
+                ].map((pref, idx) => (
                   <div key={idx} className="flex items-center space-x-2">
                     <input type="checkbox" id={`pref-${idx}`} className="rounded" defaultChecked />
                     <label htmlFor={`pref-${idx}`} className="text-sm">{pref}</label>
@@ -120,18 +132,22 @@ const ChannelCard = ({ icon: Icon, title, stats }: ChannelCardProps) => {
             </div>
             
             <div className="space-y-2">
-              <Label>Message Delivery</Label>
+              <Label>{t('communication.channelCard.messageDelivery')}</Label>
               <select className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
-                <option>Immediate</option>
-                <option>Scheduled</option>
-                <option>Working Hours Only (9AM-5PM)</option>
+                <option>{t('communication.channelCard.deliveryOptions.immediate')}</option>
+                <option>{t('communication.channelCard.deliveryOptions.scheduled')}</option>
+                <option>{t('communication.channelCard.deliveryOptions.workingHours')}</option>
               </select>
             </div>
           </div>
           
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowDetails(false)}>Cancel</Button>
-            <Button onClick={handleSaveSettings}>Save Changes</Button>
+            <Button variant="outline" onClick={() => setShowDetails(false)}>
+              {t('communication.channelCard.cancel')}
+            </Button>
+            <Button onClick={handleSaveSettings}>
+              {t('communication.channelCard.saveChanges')}
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

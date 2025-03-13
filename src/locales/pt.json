@@ -1,0 +1,126 @@
+
+{
+  "nav": {
+    "solutions": "Soluções",
+    "features": "Recursos",
+    "testimonials": "Casos de Sucesso",
+    "contact": "Contato",
+    "demo": "Demonstração",
+    "login": "Entrar"
+  },
+  "hero": {
+    "tagline": "Resolução de Dívidas Humanizada",
+    "title": "Transforme a Recuperação de Dívidas com",
+    "highlight": "Inteligência",
+    "description": "DebtCare combina insights alimentados por IA, comunicação empática e opções de pagamento flexíveis para transformar a recuperação de dívidas em uma experiência positiva tanto para empresas quanto para clientes.",
+    "cta": {
+      "getStarted": "Começar Agora",
+      "viewSolutions": "Ver Soluções"
+    },
+    "stats": {
+      "recoveryRate": "98% Taxa de Recuperação",
+      "customerRating": "4.8/5 Avaliação dos Clientes",
+      "fasterResolution": "60% Resolução Mais Rápida"
+    }
+  },
+  "solutions": {
+    "title": "Soluções Personalizadas para Cada Setor",
+    "subtitle": "DebtCare oferece abordagens especializadas para diferentes setores, combinando conhecimento específico da indústria com nossa plataforma de tecnologia principal.",
+    "financial": {
+      "title": "Para Instituições Financeiras",
+      "description": "Capacite bancos e credores com uma plataforma completa de recuperação de dívidas que mantém relacionamentos com clientes e maximiza o retorno."
+    },
+    "collection": {
+      "title": "Para Agências de Cobrança",
+      "description": "Transforme sua agência com abordagens digitais de recuperação que aumentam a eficácia enquanto reduzem os custos operacionais."
+    },
+    "debtBuyers": {
+      "title": "Para Compradores de Dívidas",
+      "description": "Maximize os retornos da carteira com insights orientados por dados que identificam as contas mais promissoras e estratégias ideais de recuperação."
+    },
+    "service": {
+      "title": "Para Provedores de Serviços",
+      "description": "Mantenha a boa vontade do cliente enquanto gerencia efetivamente contas em atraso com nossas soluções de recuperação centradas no cliente."
+    },
+    "learnMore": "Saiba Mais"
+  },
+  "features": {
+    "title": "Recursos Poderosos para Recuperação Moderna de Dívidas",
+    "subtitle": "Nossa plataforma combina as melhores práticas de soluções líderes de recuperação de dívidas, criando um sistema abrangente que prioriza tanto a eficiência quanto a conexão humana."
+  },
+  "communication": {
+    "title": "Comunicações",
+    "subtitle": "Gerencie todas as comunicações com clientes em vários canais",
+    "tabs": {
+      "channels": "Canais",
+      "templates": "Modelos",
+      "scheduler": "Agendador"
+    },
+    "channelCard": {
+      "stats": {
+        "deliveryRate": "Taxa de Entrega",
+        "responseRate": "Taxa de Resposta",
+        "avgResponse": "Resposta Média",
+        "costPerMsg": "Custo por Msg"
+      },
+      "manage": "Gerenciar",
+      "loading": "Carregando...",
+      "settings": "Configurações",
+      "channelStatus": "Status do Canal",
+      "enableDisable": "Habilitar ou desabilitar este canal de comunicação",
+      "notificationPrefs": "Preferências de Notificação",
+      "notifications": {
+        "newMessage": "Alertas de novas mensagens",
+        "delivery": "Recibos de entrega",
+        "read": "Recibos de leitura"
+      },
+      "messageDelivery": "Entrega de Mensagem",
+      "deliveryOptions": {
+        "immediate": "Imediata",
+        "scheduled": "Agendada",
+        "workingHours": "Apenas Horário Comercial (9h-17h)"
+      },
+      "cancel": "Cancelar",
+      "saveChanges": "Salvar Alterações",
+      "success": {
+        "updated": "Configurações de {channel} atualizadas",
+        "description": "A configuração do seu canal {channel} foi salva."
+      },
+      "status": {
+        "enabled": "Canal {channel} habilitado",
+        "disabled": "Canal {channel} desabilitado",
+        "description": "O canal de comunicação {channel} foi {status}."
+      }
+    },
+    "templates": {
+      "categories": "Categorias de Modelos",
+      "new": "Novo",
+      "channelType": "Tipo de Canal",
+      "createNew": "Criar Novo Modelo",
+      "editTemplate": "Editar Modelo",
+      "templateName": "Nome do Modelo",
+      "subjectLine": "Linha de Assunto",
+      "messageContent": "Conteúdo da Mensagem",
+      "variables": "Variáveis Disponíveis",
+      "delete": "Excluir",
+      "preview": "Visualizar",
+      "saving": "Salvando...",
+      "saveTemplate": "Salvar Modelo",
+      "success": {
+        "saved": "Modelo salvo com sucesso",
+        "description": "Seu modelo foi atualizado e está pronto para uso."
+      },
+      "error": {
+        "cannotDelete": "Não é possível excluir",
+        "description": "Você deve ter pelo menos um modelo."
+      },
+      "deleted": {
+        "title": "Modelo excluído",
+        "description": "O modelo foi removido."
+      }
+    }
+  },
+  "dashboard": {
+    "communications": "Comunicações"
+  }
+}

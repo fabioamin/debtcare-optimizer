@@ -4,9 +4,11 @@ import { ArrowRight, ShieldCheck, BarChart, Users, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setLoaded(true);
@@ -20,7 +22,7 @@ const Hero = () => {
           <div className="w-full lg:w-1/2 space-y-6">
             <div className="inline-flex items-center rounded-full px-3 py-1 text-sm bg-primary/10 text-primary animate-fade-in opacity-0" style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}>
               <ShieldCheck className="h-4 w-4 mr-2" />
-              <span>Humanized Debt Resolution</span>
+              <span>{t('hero.tagline')}</span>
             </div>
             
             <h1 
@@ -29,9 +31,9 @@ const Hero = () => {
                 loaded && "opacity-100"
               )}
             >
-              Transform Debt Recovery with
+              {t('hero.title')}
               <span className="text-primary relative ml-3">
-                Intelligence
+                {t('hero.highlight')}
                 <svg className="absolute -bottom-2 w-full h-3 text-primary/20" viewBox="0 0 300 12" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 5.5C32 2 62 1.5 93 5.5c43 4.5 85.5 8.5 129 0C247 1.5 280.5.5 299 3.5" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round"/>
                 </svg>
@@ -44,7 +46,7 @@ const Hero = () => {
                 loaded && "opacity-100"
               )}
             >
-              DebtCare combines AI-powered insights, empathetic communication, and flexible payment options to transform debt recovery into a positive experience for both businesses and customers.
+              {t('hero.description')}
             </p>
             
             <div 
@@ -55,13 +57,13 @@ const Hero = () => {
             >
               <Button size="lg" asChild className="group">
                 <Link to="/dashboard">
-                  Get Started
+                  {t('hero.cta.getStarted')}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link to="/#solutions">
-                  View Solutions
+                  {t('hero.cta.viewSolutions')}
                 </Link>
               </Button>
             </div>
@@ -74,15 +76,15 @@ const Hero = () => {
             >
               <div className="flex items-center gap-2">
                 <BarChart className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium">98% Recovery Rate</span>
+                <span className="text-sm font-medium">{t('hero.stats.recoveryRate')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Users className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium">4.8/5 Customer Rating</span>
+                <span className="text-sm font-medium">{t('hero.stats.customerRating')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Zap className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium">60% Faster Resolution</span>
+                <span className="text-sm font-medium">{t('hero.stats.fasterResolution')}</span>
               </div>
             </div>
           </div>

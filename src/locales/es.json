@@ -1,0 +1,126 @@
+
+{
+  "nav": {
+    "solutions": "Soluciones",
+    "features": "Características",
+    "testimonials": "Casos de Éxito",
+    "contact": "Contacto",
+    "demo": "Demostración",
+    "login": "Iniciar Sesión"
+  },
+  "hero": {
+    "tagline": "Resolución de Deudas Humanizada",
+    "title": "Transforme la Recuperación de Deudas con",
+    "highlight": "Inteligencia",
+    "description": "DebtCare combina insights impulsados por IA, comunicación empática y opciones de pago flexibles para transformar la recuperación de deudas en una experiencia positiva tanto para empresas como para clientes.",
+    "cta": {
+      "getStarted": "Comenzar",
+      "viewSolutions": "Ver Soluciones"
+    },
+    "stats": {
+      "recoveryRate": "98% Tasa de Recuperación",
+      "customerRating": "4.8/5 Calificación de Clientes",
+      "fasterResolution": "60% Resolución Más Rápida"
+    }
+  },
+  "solutions": {
+    "title": "Soluciones Personalizadas para Cada Industria",
+    "subtitle": "DebtCare ofrece enfoques especializados para diferentes sectores, combinando conocimiento específico de la industria con nuestra plataforma tecnológica principal.",
+    "financial": {
+      "title": "Para Instituciones Financieras",
+      "description": "Capacite a bancos y prestamistas con una plataforma completa de recuperación de deudas que mantiene las relaciones con los clientes y maximiza el rendimiento."
+    },
+    "collection": {
+      "title": "Para Agencias de Cobro",
+      "description": "Transforme su agencia con enfoques digitales de recuperación que aumentan la efectividad mientras reducen los costos operativos."
+    },
+    "debtBuyers": {
+      "title": "Para Compradores de Deuda",
+      "description": "Maximice los rendimientos de la cartera con insights basados en datos que identifican las cuentas más prometedoras y estrategias óptimas de recuperación."
+    },
+    "service": {
+      "title": "Para Proveedores de Servicios",
+      "description": "Mantenga la buena voluntad del cliente mientras administra efectivamente las cuentas atrasadas con nuestras soluciones de recuperación centradas en el cliente."
+    },
+    "learnMore": "Saber Más"
+  },
+  "features": {
+    "title": "Características Poderosas para la Recuperación Moderna de Deudas",
+    "subtitle": "Nuestra plataforma combina las mejores prácticas de soluciones líderes de recuperación de deudas, creando un sistema integral que prioriza tanto la eficiencia como la conexión humana."
+  },
+  "communication": {
+    "title": "Comunicaciones",
+    "subtitle": "Gestione todas las comunicaciones con clientes a través de múltiples canales",
+    "tabs": {
+      "channels": "Canales",
+      "templates": "Plantillas",
+      "scheduler": "Programador"
+    },
+    "channelCard": {
+      "stats": {
+        "deliveryRate": "Tasa de Entrega",
+        "responseRate": "Tasa de Respuesta",
+        "avgResponse": "Respuesta Promedio",
+        "costPerMsg": "Costo por Msg"
+      },
+      "manage": "Gestionar",
+      "loading": "Cargando...",
+      "settings": "Configuración",
+      "channelStatus": "Estado del Canal",
+      "enableDisable": "Habilitar o deshabilitar este canal de comunicación",
+      "notificationPrefs": "Preferencias de Notificación",
+      "notifications": {
+        "newMessage": "Alertas de nuevos mensajes",
+        "delivery": "Recibos de entrega",
+        "read": "Recibos de lectura"
+      },
+      "messageDelivery": "Entrega de Mensajes",
+      "deliveryOptions": {
+        "immediate": "Inmediata",
+        "scheduled": "Programada",
+        "workingHours": "Solo Horario Laboral (9AM-5PM)"
+      },
+      "cancel": "Cancelar",
+      "saveChanges": "Guardar Cambios",
+      "success": {
+        "updated": "Configuración de {channel} actualizada",
+        "description": "La configuración de su canal {channel} ha sido guardada."
+      },
+      "status": {
+        "enabled": "Canal {channel} habilitado",
+        "disabled": "Canal {channel} deshabilitado",
+        "description": "El canal de comunicación {channel} ha sido {status}."
+      }
+    },
+    "templates": {
+      "categories": "Categorías de Plantillas",
+      "new": "Nueva",
+      "channelType": "Tipo de Canal",
+      "createNew": "Crear Nueva Plantilla",
+      "editTemplate": "Editar Plantilla",
+      "templateName": "Nombre de Plantilla",
+      "subjectLine": "Línea de Asunto",
+      "messageContent": "Contenido del Mensaje",
+      "variables": "Variables Disponibles",
+      "delete": "Eliminar",
+      "preview": "Vista Previa",
+      "saving": "Guardando...",
+      "saveTemplate": "Guardar Plantilla",
+      "success": {
+        "saved": "Plantilla guardada con éxito",
+        "description": "Su plantilla ha sido actualizada y está lista para usar."
+      },
+      "error": {
+        "cannotDelete": "No se puede eliminar",
+        "description": "Debe tener al menos una plantilla."
+      },
+      "deleted": {
+        "title": "Plantilla eliminada",
+        "description": "La plantilla ha sido eliminada."
+      }
+    }
+  },
+  "dashboard": {
+    "communications": "Comunicaciones"
+  }
+}
