@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -25,10 +24,8 @@ const UserRoleManagement: React.FC = () => {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   
-  // Get users from context
   const users = getUsers().filter(u => u.active !== false);
 
-  // Form validation schema
   const userFormSchema = z.object({
     name: z.string().min(2, { message: "Nome deve ter pelo menos 2 caracteres" }),
     email: z.string().email({ message: "Email inválido" }),
@@ -38,7 +35,6 @@ const UserRoleManagement: React.FC = () => {
     password: z.string().min(6, { message: "Senha deve ter pelo menos 6 caracteres" }).optional(),
   });
 
-  // Form for adding/editing users
   const form = useForm<z.infer<typeof userFormSchema>>({
     resolver: zodResolver(userFormSchema),
     defaultValues: {
@@ -86,7 +82,7 @@ const UserRoleManagement: React.FC = () => {
 
   const onSubmitAddUser = form.handleSubmit(async (data) => {
     try {
-      await addUser(data);
+      await addUser(data as UserFormData);
       setIsAddDialogOpen(false);
     } catch (error) {
       console.error("Error adding user:", error);
@@ -97,7 +93,7 @@ const UserRoleManagement: React.FC = () => {
     if (!selectedUser) return;
     
     try {
-      await updateUser(selectedUser.id, data);
+      await updateUser(selectedUser.id, data as Partial<UserFormData>);
       setIsEditDialogOpen(false);
     } catch (error) {
       console.error("Error updating user:", error);
@@ -135,7 +131,6 @@ const UserRoleManagement: React.FC = () => {
     return roleInfo?.displayName || role;
   };
 
-  // Check if the current user can edit roles (system admin or certain company admins)
   const canEditRoles = user?.role === 'system_admin';
 
   return (
@@ -253,7 +248,6 @@ const UserRoleManagement: React.FC = () => {
         </CardContent>
       </Card>
 
-      {/* Add User Dialog */}
       <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -341,7 +335,6 @@ const UserRoleManagement: React.FC = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Edit User Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -429,7 +422,6 @@ const UserRoleManagement: React.FC = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Delete User Confirmation Dialog */}
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
