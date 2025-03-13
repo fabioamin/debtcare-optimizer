@@ -6,6 +6,7 @@ import CommunicationPanel from "@/components/dashboard/CommunicationPanel";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "@/components/LanguageSelector";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 const Communication = () => {
   const { toast } = useToast();
@@ -17,27 +18,29 @@ const Communication = () => {
   };
 
   return (
-    <div className="min-h-screen bg-muted/40">
-      <DashboardHeader onMenuClick={handleMenuClick} />
-      <div className="flex">
-        <DashboardSidebar open={sidebarOpen} />
-        <main className="flex-1 p-6 pt-16 md:pt-20">
-          <div className="container mx-auto max-w-7xl space-y-6">
-            <div className="flex justify-between items-center">
-              <div>
-                <h1 className="text-3xl font-bold">{t('communication.title')}</h1>
-                <p className="text-muted-foreground mb-6">
-                  {t('communication.subtitle')}
-                </p>
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full bg-muted/40">
+        <DashboardHeader onMenuClick={handleMenuClick} />
+        <div className="flex">
+          <DashboardSidebar open={sidebarOpen} />
+          <main className="flex-1 p-6 pt-16 md:pt-20">
+            <div className="container mx-auto max-w-7xl space-y-6">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h1 className="text-3xl font-bold">{t('communication.title')}</h1>
+                  <p className="text-muted-foreground mb-6">
+                    {t('communication.subtitle')}
+                  </p>
+                </div>
+                <LanguageSelector />
               </div>
-              <LanguageSelector />
+              
+              <CommunicationPanel />
             </div>
-            
-            <CommunicationPanel />
-          </div>
-        </main>
+          </main>
+        </div>
       </div>
-    </div>
+    </SidebarProvider>
   );
 };
 
