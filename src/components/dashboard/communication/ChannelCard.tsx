@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 
 interface ChannelCardProps {
   icon: LucideIcon;
@@ -64,17 +65,22 @@ const ChannelCard = ({ icon: Icon, title, stats }: ChannelCardProps) => {
   
   return (
     <>
-      <Card>
-        <CardHeader className="pb-2">
-          <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-2">
+      <Card className="group overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] hover:border-primary/20">
+        <CardHeader className="pb-2 space-y-2">
+          <div className={cn(
+            "w-10 h-10 rounded-lg flex items-center justify-center mb-1",
+            "bg-primary/10 text-primary",
+            "group-hover:bg-primary group-hover:text-primary-foreground", 
+            "transition-colors duration-300"
+          )}>
             <Icon className="h-5 w-5" />
           </div>
-          <CardTitle className="text-base">{title}</CardTitle>
+          <CardTitle className="text-base font-medium">{title}</CardTitle>
         </CardHeader>
         <CardContent className="pb-2">
-          <div className="text-sm text-muted-foreground">
+          <div className="text-sm text-muted-foreground space-y-1">
             {stats.map((stat, index) => (
-              <div key={index} className="flex justify-between mb-1">
+              <div key={index} className="flex justify-between items-center">
                 <span>{stat.label}:</span>
                 <span className="font-medium">{stat.value}</span>
               </div>
@@ -85,7 +91,7 @@ const ChannelCard = ({ icon: Icon, title, stats }: ChannelCardProps) => {
           <Button 
             variant="ghost" 
             size="sm" 
-            className="w-full"
+            className="w-full group-hover:bg-primary/10 transition-colors"
             onClick={handleManage}
             disabled={isLoading}
           >

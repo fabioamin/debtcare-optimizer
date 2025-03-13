@@ -12,8 +12,11 @@ import {
   Send 
 } from "lucide-react";
 import ChannelCard from "./ChannelCard";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const ChannelsTab = () => {
+  const isMobile = useIsMobile();
+  
   const channels = [
     {
       icon: Mail,
@@ -108,7 +111,7 @@ const ChannelsTab = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className={`grid grid-cols-1 ${isMobile ? 'sm:grid-cols-2' : 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'} gap-4 animate-fade-in`}>
       {channels.map((channel, index) => (
         <ChannelCard key={index} {...channel} />
       ))}
