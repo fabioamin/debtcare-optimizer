@@ -17,6 +17,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Api from "./pages/Api";
 import Compliance from "./pages/Compliance";
 import International from "./pages/International";
+import Customers from "./pages/Customers";
 import { LanguageProvider } from "./contexts/LanguageContext";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/dashboard/apis" element={<Api />} />
           <Route path="/dashboard/compliance" element={<Compliance />} />
           <Route path="/dashboard/international" element={<International />} />
+          <Route path="/dashboard/customers" element={<Customers />} />
           <Route path="/dashboard/white-label" element={<WhiteLabel />} />
           <Route path="/dashboard/white-label/portal" element={<Portal />} />
           <Route path="/dashboard/white-label/self-service" element={<SelfService />} />
