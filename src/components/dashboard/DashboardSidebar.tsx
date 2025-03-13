@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -99,11 +100,6 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
       path: "/dashboard/payments" 
     },
     { 
-      icon: <PenTool className="h-5 w-5" />, 
-      label: "White Label", 
-      path: "/dashboard/white-label" 
-    },
-    { 
       icon: <Workflow className="h-5 w-5" />, 
       label: t('dashboard.automatedWorkflows'), 
       path: "/dashboard/workflows" 
@@ -127,6 +123,11 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
       icon: <Users className="h-5 w-5" />, 
       label: t('dashboard.customers'), 
       path: "/dashboard/customers" 
+    },
+    { 
+      icon: <PenTool className="h-5 w-5" />, 
+      label: "White Label", 
+      path: "/dashboard/white-label" 
     },
     { 
       icon: <Settings className="h-5 w-5" />, 
