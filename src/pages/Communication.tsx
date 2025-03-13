@@ -20,7 +20,7 @@ const Communication = () => {
       <DashboardHeader onMenuClick={handleMenuClick} />
       <div className="flex">
         <DashboardSidebar open={sidebarOpen} />
-        <main className={`flex-1 p-4 md:p-6 pt-16 md:pt-20 transition-all duration-300`}>
+        <main className={`flex-1 p-4 md:p-6 pt-16 md:pt-20 transition-all duration-300 ${sidebarOpen ? 'ml-20' : 'ml-0'}`}>
           <div className="max-w-7xl mx-auto space-y-4 md:space-y-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-2 md:mb-4">
               <div>
