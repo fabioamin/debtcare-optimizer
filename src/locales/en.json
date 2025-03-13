@@ -125,7 +125,10 @@
     "payments": "Payments",
     "compliance": "Compliance",
     "international": "International",
-    "customers": "Customers"
+    "customers": "Customers",
+    "insights": "AI Insights",
+    "portfolio": "Portfolio",
+    "strategy": "Strategy"
   },
   "payments": {
     "title": "Payment Options",
@@ -180,5 +183,12 @@
       "rapipago": "Rapipago",
       "pagofacil": "Pago Fácil"
     }
+  },
+  "insights": {
+    "title": "AI Insights",
+    "subtitle": "Leverage machine learning and behavioral analytics for smarter debt recovery",
+    "customer": "Customer Analysis",
+    "portfolio": "Portfolio Intelligence",
+    "predictive": "Predictive Analytics"
   }
 }
