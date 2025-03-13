@@ -17,7 +17,7 @@ const Portfolio = () => {
     <SidebarProvider>
       <div className="min-h-screen bg-muted/40 flex w-full">
         <DashboardSidebar open={sidebarOpen} />
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'}`}>
           <DashboardHeader onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
           <main className="flex-1 p-6 pt-16 md:pt-20">
             <div className="container mx-auto max-w-7xl space-y-6">
