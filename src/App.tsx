@@ -41,9 +41,11 @@ function App() {
               <Route path="/dashboard/compliance" element={<Compliance />} />
               <Route path="/dashboard/international" element={<International />} />
               <Route path="/dashboard/customers" element={<Customers />} />
-              <Route path="/dashboard/white-label" element={<WhiteLabel />} />
-              <Route path="/dashboard/white-label/portal" element={<Portal />} />
-              <Route path="/dashboard/white-label/self-service" element={<SelfService />} />
+              <Route path="/dashboard/white-label" element={<WhiteLabel />}>
+                <Route index element={<Portal />} />
+                <Route path="portal" element={<Portal />} />
+                <Route path="self-service" element={<SelfService />} />
+              </Route>
               <Route path="/dashboard/settings" element={<Settings />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
