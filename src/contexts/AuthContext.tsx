@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { User, UserRole, RolePermissions, UserFormData } from "@/types/auth";
 import { toast } from "sonner";
@@ -109,9 +108,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [users, setUsers] = useState<User[]>(INITIAL_MOCK_USERS);
   
-  // Initialize user state when component mounts
   useEffect(() => {
-    // Set the first user as the current user initially
     setUser(users[0]);
   }, []);
 
@@ -182,8 +179,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       active: true
     };
 
-    const updatedUsers = [...users, newUser];
-    setUsers(updatedUsers);
+    setUsers(prevUsers => [...prevUsers, newUser]);
     
     toast.success(`Usuário ${newUser.name} adicionado com sucesso`);
     return newUser;
@@ -216,29 +212,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const deleteUser = async (userId: string): Promise<void> => {
-    const updatedUsers = users.map(u => 
-      u.id === userId ? { ...u, active: false } : u
+    setUsers(prevUsers => 
+      prevUsers.map(u => u.id === userId ? { ...u, active: false } : u)
     );
-    
-    setUsers(updatedUsers);
     
     toast.success("Usuário removido com sucesso");
   };
 
+  const contextValue: AuthContextType = {
+    user,
+    isAuthenticated: !!user,
+    hasPermission,
+    hasRole,
+    login,
+    logout,
+    updateUserRole,
+    getUsers,
+    addUser,
+    updateUser,
+    deleteUser
+  };
+
   return (
-    <AuthContext.Provider value={{ 
-      user, 
-      isAuthenticated: !!user,
-      hasPermission,
-      hasRole,
-      login,
-      logout,
-      updateUserRole,
-      getUsers,
-      addUser,
-      updateUser,
-      deleteUser
-    }}>
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );

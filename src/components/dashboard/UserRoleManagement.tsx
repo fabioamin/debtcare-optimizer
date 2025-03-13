@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -35,7 +36,10 @@ const UserRoleManagement: React.FC = () => {
     password: z.string().min(6, { message: "Senha deve ter pelo menos 6 caracteres" }).optional(),
   });
 
-  const form = useForm<z.infer<typeof userFormSchema>>({
+  // Define the form type from the schema
+  type UserFormValues = z.infer<typeof userFormSchema>;
+
+  const form = useForm<UserFormValues>({
     resolver: zodResolver(userFormSchema),
     defaultValues: {
       name: "",
@@ -82,7 +86,14 @@ const UserRoleManagement: React.FC = () => {
 
   const onSubmitAddUser = form.handleSubmit(async (data) => {
     try {
-      await addUser(data as UserFormData);
+      // Explicitly convert the form data to UserFormData type
+      const userData: UserFormData = {
+        name: data.name,
+        email: data.email,
+        role: data.role,
+        password: data.password
+      };
+      await addUser(userData);
       setIsAddDialogOpen(false);
     } catch (error) {
       console.error("Error adding user:", error);
@@ -93,7 +104,14 @@ const UserRoleManagement: React.FC = () => {
     if (!selectedUser) return;
     
     try {
-      await updateUser(selectedUser.id, data as Partial<UserFormData>);
+      // Explicitly create a partial user data object
+      const userData: Partial<UserFormData> = {};
+      if (data.name) userData.name = data.name;
+      if (data.email) userData.email = data.email;
+      if (data.role) userData.role = data.role;
+      if (data.password) userData.password = data.password;
+      
+      await updateUser(selectedUser.id, userData);
       setIsEditDialogOpen(false);
     } catch (error) {
       console.error("Error updating user:", error);
