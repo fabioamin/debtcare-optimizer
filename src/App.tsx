@@ -20,33 +20,36 @@ import International from "./pages/International";
 import Customers from "./pages/Customers";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { AuthProvider } from "./contexts/AuthContext";
+import { PaymentProvider } from "./contexts/PaymentContext";
 
 function App() {
   return (
     <AuthProvider>
       <LanguageProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/portfolio" element={<Portfolio />} />
-            <Route path="/dashboard/strategy" element={<Strategy />} />
-            <Route path="/dashboard/communication" element={<Communication />} />
-            <Route path="/dashboard/payments" element={<Payments />} />
-            <Route path="/dashboard/insights" element={<Insights />} />
-            <Route path="/dashboard/workflows" element={<Workflows />} />
-            <Route path="/dashboard/apis" element={<Api />} />
-            <Route path="/dashboard/compliance" element={<Compliance />} />
-            <Route path="/dashboard/international" element={<International />} />
-            <Route path="/dashboard/customers" element={<Customers />} />
-            <Route path="/dashboard/white-label" element={<WhiteLabel />} />
-            <Route path="/dashboard/white-label/portal" element={<Portal />} />
-            <Route path="/dashboard/white-label/self-service" element={<SelfService />} />
-            <Route path="/dashboard/settings" element={<Settings />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Toaster />
-        </BrowserRouter>
+        <PaymentProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard/portfolio" element={<Portfolio />} />
+              <Route path="/dashboard/strategy" element={<Strategy />} />
+              <Route path="/dashboard/communication" element={<Communication />} />
+              <Route path="/dashboard/payments" element={<Payments />} />
+              <Route path="/dashboard/insights" element={<Insights />} />
+              <Route path="/dashboard/workflows" element={<Workflows />} />
+              <Route path="/dashboard/apis" element={<Api />} />
+              <Route path="/dashboard/compliance" element={<Compliance />} />
+              <Route path="/dashboard/international" element={<International />} />
+              <Route path="/dashboard/customers" element={<Customers />} />
+              <Route path="/dashboard/white-label" element={<WhiteLabel />} />
+              <Route path="/dashboard/white-label/portal" element={<Portal />} />
+              <Route path="/dashboard/white-label/self-service" element={<SelfService />} />
+              <Route path="/dashboard/settings" element={<Settings />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Toaster />
+          </BrowserRouter>
+        </PaymentProvider>
       </LanguageProvider>
     </AuthProvider>
   );
