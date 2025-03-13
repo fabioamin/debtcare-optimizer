@@ -122,7 +122,14 @@
   },
   "dashboard": {
     "communications": "Comunicações",
-    "payments": "Pagamentos"
+    "payments": "Pagamentos",
+    "compliance": "Conformidade",
+    "international": "Internacional",
+    "customers": "Clientes",
+    "insights": "Insights de IA",
+    "portfolio": "Portfólio",
+    "strategy": "Estratégia",
+    "automatedWorkflows": "Fluxos de Trabalho Automatizados & APIs"
   },
   "payments": {
     "title": "Opções de Pagamento",
