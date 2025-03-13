@@ -22,6 +22,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { PaymentProvider } from "./contexts/PaymentContext";
 import { NotificationProvider } from "./contexts/NotificationContext";
+import DashboardLayout from "./components/layouts/DashboardLayout";
 
 function App() {
   return (
@@ -30,29 +31,30 @@ function App() {
         <PaymentProvider>
           <NotificationProvider>
             <BrowserRouter>
-              <div className="flex flex-col min-h-screen">
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/dashboard/portfolio" element={<Portfolio />} />
-                  <Route path="/dashboard/strategy" element={<Strategy />} />
-                  <Route path="/dashboard/communication" element={<Communication />} />
-                  <Route path="/dashboard/payments" element={<Payments />} />
-                  <Route path="/dashboard/insights" element={<Insights />} />
-                  <Route path="/dashboard/workflows" element={<Workflows />} />
-                  <Route path="/dashboard/apis" element={<Api />} />
-                  <Route path="/dashboard/compliance" element={<Compliance />} />
-                  <Route path="/dashboard/international" element={<International />} />
-                  <Route path="/dashboard/customers" element={<Customers />} />
-                  <Route path="/dashboard/white-label" element={<WhiteLabel />}>
-                    <Route index element={<Portal />} />
-                    <Route path="portal" element={<Portal />} />
-                    <Route path="self-service" element={<SelfService />} />
-                  </Route>
-                  <Route path="/dashboard/settings" element={<Settings />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </div>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                
+                {/* Dashboard routes with DashboardLayout */}
+                <Route path="/dashboard" element={<DashboardLayout><Dashboard /></DashboardLayout>} />
+                <Route path="/dashboard/portfolio" element={<DashboardLayout><Portfolio /></DashboardLayout>} />
+                <Route path="/dashboard/strategy" element={<DashboardLayout><Strategy /></DashboardLayout>} />
+                <Route path="/dashboard/communication" element={<DashboardLayout><Communication /></DashboardLayout>} />
+                <Route path="/dashboard/payments" element={<DashboardLayout><Payments /></DashboardLayout>} />
+                <Route path="/dashboard/insights" element={<DashboardLayout><Insights /></DashboardLayout>} />
+                <Route path="/dashboard/workflows" element={<DashboardLayout><Workflows /></DashboardLayout>} />
+                <Route path="/dashboard/apis" element={<DashboardLayout><Api /></DashboardLayout>} />
+                <Route path="/dashboard/compliance" element={<DashboardLayout><Compliance /></DashboardLayout>} />
+                <Route path="/dashboard/international" element={<DashboardLayout><International /></DashboardLayout>} />
+                <Route path="/dashboard/customers" element={<DashboardLayout><Customers /></DashboardLayout>} />
+                <Route path="/dashboard/white-label" element={<DashboardLayout><WhiteLabel /></DashboardLayout>}>
+                  <Route index element={<Portal />} />
+                  <Route path="portal" element={<Portal />} />
+                  <Route path="self-service" element={<SelfService />} />
+                </Route>
+                <Route path="/dashboard/settings" element={<DashboardLayout><Settings /></DashboardLayout>} />
+                
+                <Route path="*" element={<NotFound />} />
+              </Routes>
               <Toaster />
             </BrowserRouter>
           </NotificationProvider>
