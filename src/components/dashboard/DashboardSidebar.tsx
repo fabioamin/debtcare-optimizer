@@ -1,6 +1,7 @@
+
 import { Home, CreditCard, MessageSquareText, Brain, ChartLine, ShieldCheck, Settings, Globe, Zap, HelpCircle, LogOut, Target, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 interface DashboardSidebarProps {
@@ -8,6 +9,9 @@ interface DashboardSidebarProps {
 }
 
 const DashboardSidebar = ({ open }: DashboardSidebarProps) => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+  
   const navItems = [
     { name: "Dashboard", icon: Home, path: "/dashboard" },
     { name: "Portfolio", icon: Briefcase, path: "/dashboard/portfolio" },
@@ -48,19 +52,24 @@ const DashboardSidebar = ({ open }: DashboardSidebarProps) => {
         
         <nav className="flex-1 py-4 px-2 overflow-y-auto">
           <ul className="space-y-1.5">
-            {navItems.map((item) => (
-              <li key={item.name}>
-                <Link to={item.path} className="flex items-center">
-                  <Button variant="ghost" className={cn(
-                    "w-full justify-start",
-                    !open && "justify-center px-2"
-                  )}>
-                    <item.icon className={cn("h-5 w-5", open && "mr-2")} />
-                    {open && <span>{item.name}</span>}
-                  </Button>
-                </Link>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              const isActive = currentPath === item.path || 
+                (item.path !== "/dashboard" && currentPath.startsWith(item.path));
+              
+              return (
+                <li key={item.name}>
+                  <Link to={item.path} className="flex items-center">
+                    <Button variant={isActive ? "secondary" : "ghost"} className={cn(
+                      "w-full justify-start",
+                      !open && "justify-center px-2"
+                    )}>
+                      <item.icon className={cn("h-5 w-5", open && "mr-2")} />
+                      {open && <span>{item.name}</span>}
+                    </Button>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
         
