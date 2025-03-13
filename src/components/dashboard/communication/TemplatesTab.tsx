@@ -1,13 +1,49 @@
 
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const TemplatesTab = () => {
   const [selectedTemplate, setSelectedTemplate] = useState("reminder-7");
+  const [subject, setSubject] = useState("Your payment is due in 7 days");
+  const [content, setContent] = useState(`Dear {{customer.name}},
+
+We hope this message finds you well. This is a friendly reminder that your payment of {{payment.amount}} is due on {{payment.dueDate}}. 
+
+You can easily make your payment through our secure portal at {{payment.link}} or contact us to discuss flexible payment options.
+
+Thank you for your prompt attention to this matter.
+
+Best regards,
+The DebtCare Team`);
+  const [isSaving, setIsSaving] = useState(false);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const { toast } = useToast();
+  
+  const handleSaveTemplate = () => {
+    setIsSaving(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsSaving(false);
+      toast.success("Template saved successfully", {
+        description: "Your template has been updated and is ready to use."
+      });
+    }, 1000);
+  };
+  
+  const handlePreview = () => {
+    setIsPreviewOpen(true);
+    toast({
+      title: subject,
+      description: content.substring(0, 100) + "...",
+      className: "bg-secondary border-secondary",
+    });
+  };
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -80,22 +116,17 @@ const TemplatesTab = () => {
           <div className="space-y-3">
             <div className="space-y-1">
               <label className="text-sm font-medium">Subject Line</label>
-              <Input defaultValue="Your payment is due in 7 days" />
+              <Input 
+                value={subject} 
+                onChange={(e) => setSubject(e.target.value)}
+              />
             </div>
             <div className="space-y-1">
               <label className="text-sm font-medium">Message Content</label>
               <Textarea 
                 rows={8} 
-                defaultValue="Dear {{customer.name}},
-
-We hope this message finds you well. This is a friendly reminder that your payment of {{payment.amount}} is due on {{payment.dueDate}}. 
-
-You can easily make your payment through our secure portal at {{payment.link}} or contact us to discuss flexible payment options.
-
-Thank you for your prompt attention to this matter.
-
-Best regards,
-The DebtCare Team" 
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
               />
             </div>
             <div className="bg-secondary/50 p-3 rounded-lg">
@@ -112,8 +143,20 @@ The DebtCare Team"
         </div>
         
         <div className="flex justify-end space-x-2">
-          <Button variant="outline">Preview</Button>
-          <Button>Save Template</Button>
+          <Button variant="outline" onClick={handlePreview}>Preview</Button>
+          <Button 
+            onClick={handleSaveTemplate}
+            disabled={isSaving}
+          >
+            {isSaving ? (
+              <>Saving...</>
+            ) : (
+              <>
+                <Save className="h-4 w-4 mr-2" />
+                Save Template
+              </>
+            )}
+          </Button>
         </div>
       </div>
     </div>

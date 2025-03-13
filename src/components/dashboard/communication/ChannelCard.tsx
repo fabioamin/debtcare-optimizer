@@ -2,6 +2,8 @@
 import { LucideIcon } from "lucide-react";
 import { Card, CardHeader, CardContent, CardFooter, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 interface ChannelCardProps {
   icon: LucideIcon;
@@ -13,6 +15,21 @@ interface ChannelCardProps {
 }
 
 const ChannelCard = ({ icon: Icon, title, stats }: ChannelCardProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+  
+  const handleManage = () => {
+    setIsLoading(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsLoading(false);
+      toast.info(`Managing ${title} channel`, {
+        description: `Channel settings for ${title} have been loaded.`
+      });
+    }, 800);
+  };
+  
   return (
     <Card>
       <CardHeader className="pb-2">
@@ -32,7 +49,15 @@ const ChannelCard = ({ icon: Icon, title, stats }: ChannelCardProps) => {
         </div>
       </CardContent>
       <CardFooter>
-        <Button variant="ghost" size="sm" className="w-full">Manage</Button>
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className="w-full"
+          onClick={handleManage}
+          disabled={isLoading}
+        >
+          {isLoading ? "Loading..." : "Manage"}
+        </Button>
       </CardFooter>
     </Card>
   );
