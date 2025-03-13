@@ -1,11 +1,10 @@
-
 import { BarChart4, Circle, Phone, Mail, MessageSquare } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
 import InsightChart from "./InsightChart";
-import { toast } from "@/components/ui/toast";
+import { toast } from "@/hooks/use-toast";
 
 const AiInsightsPanel = () => {
   const [isGeneratingStrategy, setIsGeneratingStrategy] = useState(false);
@@ -18,7 +17,7 @@ const AiInsightsPanel = () => {
       recommendation: "Prioritize mobile payment options in communications"
     },
     {
-      title: "Best Contact Method",
+      title: "Best Contact Method", 
       value: "SMS",
       score: 92,
       recommendation: "Use SMS for initial contact and reminders"
@@ -37,7 +36,6 @@ const AiInsightsPanel = () => {
     { method: "SMS", icon: MessageSquare, percentage: 45 }
   ];
 
-  // Demo data for charts
   const paymentProbabilityData = [
     { day: "Mon", probability: 42 },
     { day: "Tue", probability: 55 },
@@ -51,7 +49,6 @@ const AiInsightsPanel = () => {
   const handleGenerateStrategy = () => {
     setIsGeneratingStrategy(true);
     
-    // Simulate strategy generation
     setTimeout(() => {
       setIsGeneratingStrategy(false);
       toast({

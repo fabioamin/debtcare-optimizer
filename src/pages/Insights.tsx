@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Brain, Database, Activity, BarChart4, ChartLine, Sparkles } from "lucide-react";
@@ -9,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import InsightChart from "@/components/dashboard/InsightChart";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "@/hooks/use-toast";
 
 const Insights = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
