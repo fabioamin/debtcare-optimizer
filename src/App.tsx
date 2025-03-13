@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { PaymentProvider } from "./contexts/PaymentContext";
 import Index from "./pages/Index";
@@ -14,6 +14,7 @@ import Insights from "./pages/Insights";
 import Communication from "./pages/Communication";
 import Payments from "./pages/Payments";
 import SelfService from "./pages/SelfService";
+import WhiteLabel from "./pages/WhiteLabel";
 import Settings from "./pages/Settings";
 import Portal from "./pages/Portal";
 import NotFound from "./pages/NotFound";
@@ -38,8 +39,18 @@ const App = () => (
               <Route path="/dashboard/insights" element={<Insights />} />
               <Route path="/dashboard/communication" element={<Communication />} />
               <Route path="/dashboard/payments" element={<Payments />} />
-              <Route path="/dashboard/self-service" element={<SelfService />} />
-              <Route path="/dashboard/portal" element={<Portal />} />
+              
+              {/* White Label module with nested routes */}
+              <Route path="/dashboard/white-label" element={<WhiteLabel />}>
+                <Route index element={<Navigate to="/dashboard/white-label/portal" replace />} />
+                <Route path="portal" element={<Portal />} />
+                <Route path="self-service" element={<SelfService />} />
+              </Route>
+              
+              {/* Redirect old routes to new structure */}
+              <Route path="/dashboard/self-service" element={<Navigate to="/dashboard/white-label/self-service" replace />} />
+              <Route path="/dashboard/portal" element={<Navigate to="/dashboard/white-label/portal" replace />} />
+              
               <Route path="/dashboard/settings" element={<Settings />} />
               <Route path="/dashboard/compliance" element={<Dashboard />} />
               <Route path="/dashboard/international" element={<Dashboard />} />

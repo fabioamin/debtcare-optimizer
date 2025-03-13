@@ -12,13 +12,11 @@ import {
   Shield,
   Globe,
   Users,
-  Layout,
-  UserCircle,
   Workflow,
-  Zap,
   Code,
   EyeOff,
-  Eye
+  Eye,
+  PenTool
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Switch } from "@/components/ui/switch";
@@ -101,14 +99,9 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
       path: "/dashboard/payments" 
     },
     { 
-      icon: <UserCircle className="h-5 w-5" />, 
-      label: "Self Service", 
-      path: "/dashboard/self-service" 
-    },
-    { 
-      icon: <Layout className="h-5 w-5" />, 
-      label: "Portal", 
-      path: "/dashboard/portal" 
+      icon: <PenTool className="h-5 w-5" />, 
+      label: "White Label", 
+      path: "/dashboard/white-label" 
     },
     { 
       icon: <Workflow className="h-5 w-5" />, 
@@ -178,7 +171,8 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
                 title={!isExpanded ? item.label : undefined}
                 className={cn(
                   "flex items-center gap-3 px-3 py-2 rounded-md transition-colors",
-                  location.pathname === item.path
+                  (location.pathname === item.path || 
+                   (item.path === "/dashboard/white-label" && location.pathname.includes("/dashboard/white-label")))
                     ? "bg-sidebar-accent text-sidebar-accent-foreground"
                     : "text-sidebar-foreground hover:bg-sidebar-accent/70 hover:text-sidebar-accent-foreground"
                 )}
