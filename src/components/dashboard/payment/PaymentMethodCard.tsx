@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { PaymentMethodCode, CountryCode, PaymentMethod, usePayment } from '@/contexts/PaymentContext';
-import { Shield, Clock, DollarSign, CreditCard, Receipt, Bank } from 'lucide-react';
+import { Shield, Clock, DollarSign, CreditCard, Receipt, Building } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
 interface PaymentMethodCardProps {
@@ -45,7 +45,7 @@ export const PaymentMethodCard: React.FC<PaymentMethodCardProps> = ({ method, co
         return <CreditCard className="h-6 w-6" />;
       case 'bankTransfer':
       case 'zelle':
-        return <Bank className="h-6 w-6" />;
+        return <Building className="h-6 w-6" />; // Changed from Bank to Building
       case 'boleto':
       case 'oxxo':
       case 'rapipago':
