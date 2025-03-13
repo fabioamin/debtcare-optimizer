@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -36,17 +35,15 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
   useEffect(() => {
     if (!open || !autoHideEnabled) return;
     
-    // When not hovered and the sidebar is open, collapse after a delay
     const timer = setTimeout(() => {
       if (!isHovered && open) {
         setIsExpanded(false);
       }
-    }, 1000); // 1 second delay before collapsing
+    }, 1000);
     
     return () => clearTimeout(timer);
   }, [isHovered, open, autoHideEnabled]);
   
-  // When hovered, expand the sidebar
   const handleMouseEnter = () => {
     setIsHovered(true);
     if (autoHideEnabled) {
@@ -54,16 +51,13 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
     }
   };
   
-  // When mouse leaves, mark as not hovered
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
 
-  // Toggle auto-hide feature
   const toggleAutoHide = () => {
     setAutoHideEnabled(!autoHideEnabled);
     if (!autoHideEnabled) {
-      // If enabling auto-hide, keep the sidebar expanded until mouse leaves
       setIsExpanded(true);
     }
   };
@@ -126,7 +120,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
     },
     { 
       icon: <PenTool className="h-5 w-5" />, 
-      label: "White Label", 
+      label: "Customer Interface", 
       path: "/dashboard/white-label" 
     },
     { 
@@ -148,7 +142,6 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
       onMouseLeave={handleMouseLeave}
     >
       <div className="overflow-y-auto h-[calc(100vh-4rem)] pt-4">
-        {/* Auto-hide toggle switch */}
         <div className="px-3 pb-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             {autoHideEnabled ? 

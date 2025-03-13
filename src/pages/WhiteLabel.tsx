@@ -39,7 +39,7 @@ const WhiteLabel = () => {
               <div className="bg-primary/10 p-6 rounded-lg border border-primary/20">
                 <div className="flex flex-col md:flex-row md:items-center justify-between">
                   <div>
-                    <h1 className="text-2xl font-bold">White Label</h1>
+                    <h1 className="text-2xl font-bold">Customer Interface</h1>
                     <p className="text-muted-foreground mt-1">
                       Customize your client experience and self-service options
                     </p>
@@ -51,7 +51,7 @@ const WhiteLabel = () => {
                       </button>
                     </Link>
                     <span className="text-muted-foreground mx-1">/</span>
-                    <span className="text-sm font-medium">White Label</span>
+                    <span className="text-sm font-medium">Customer Interface</span>
                   </div>
                 </div>
               </div>
