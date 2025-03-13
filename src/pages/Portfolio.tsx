@@ -1,12 +1,18 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Upload, Database } from "lucide-react";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import PortfolioManagement from "@/components/dashboard/PortfolioManagement";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import PortfolioUpload from "@/components/dashboard/PortfolioUpload";
 
 const Portfolio = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [activeTab, setActiveTab] = useState("manage");
 
   return (
     <div className="h-screen bg-background flex">
@@ -41,8 +47,27 @@ const Portfolio = () => {
               </div>
             </div>
             
-            {/* Portfolio Management Component */}
-            <PortfolioManagement />
+            {/* Portfolio Tabs */}
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="manage">
+                  <Database className="h-4 w-4 mr-2" />
+                  Manage Portfolio
+                </TabsTrigger>
+                <TabsTrigger value="upload">
+                  <Upload className="h-4 w-4 mr-2" />
+                  Upload Portfolio
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="manage" className="mt-6">
+                <PortfolioManagement />
+              </TabsContent>
+              
+              <TabsContent value="upload" className="mt-6">
+                <PortfolioUpload />
+              </TabsContent>
+            </Tabs>
           </div>
         </main>
       </div>
