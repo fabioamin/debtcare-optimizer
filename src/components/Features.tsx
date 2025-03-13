@@ -1,6 +1,5 @@
 
 import { useEffect, useRef, useState } from "react";
-import { IntersectionObserver } from "react-intersection-observer";
 import { Brain, MessageSquareText, CreditCard, ShieldCheck, ChartLine, Globe, Settings, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 

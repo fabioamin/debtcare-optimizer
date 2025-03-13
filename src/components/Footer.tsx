@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { LinkedIn, Twitter, Facebook, Instagram, Mail, ArrowRight } from "lucide-react";
+import { Linkedin, Twitter, Facebook, Instagram, Mail, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
@@ -47,7 +47,7 @@ const Footer = () => {
                 className="h-9 w-9 rounded-full bg-background flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
                 aria-label="LinkedIn"
               >
-                <LinkedIn className="h-4 w-4" />
+                <Linkedin className="h-4 w-4" />
               </a>
               <a 
                 href="#" 
