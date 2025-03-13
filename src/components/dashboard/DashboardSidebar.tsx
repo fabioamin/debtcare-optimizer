@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { 
@@ -35,6 +35,32 @@ interface DashboardSidebarProps {
 const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
   const location = useLocation();
   const { t } = useTranslation();
+  const [isHovered, setIsHovered] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
+  
+  useEffect(() => {
+    if (!open) return;
+    
+    // When not hovered and the sidebar is open, collapse after a delay
+    const timer = setTimeout(() => {
+      if (!isHovered && open) {
+        setIsExpanded(false);
+      }
+    }, 1000); // 1 second delay before collapsing
+    
+    return () => clearTimeout(timer);
+  }, [isHovered, open]);
+  
+  // When hovered, expand the sidebar
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    setIsExpanded(true);
+  };
+  
+  // When mouse leaves, mark as not hovered
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const menuItems = [
     { 
@@ -117,13 +143,21 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
   if (!open) return null;
 
   return (
-    <div className="h-screen fixed top-16 left-0 z-10 bg-sidebar border-r w-64">
+    <div 
+      className={cn(
+        "h-screen fixed top-16 left-0 z-10 bg-sidebar border-r transition-all duration-300",
+        isExpanded ? "w-64" : "w-16"
+      )}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="overflow-y-auto h-[calc(100vh-4rem)] pt-4">
         <ul className="space-y-1 px-2">
           {menuItems.map((item) => (
             <li key={item.path}>
               <Link
                 to={item.path}
+                title={!isExpanded ? item.label : undefined}
                 className={cn(
                   "flex items-center gap-2 px-3 py-2 rounded-md transition-colors",
                   location.pathname === item.path
@@ -132,7 +166,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
                 )}
               >
                 {item.icon}
-                <span className="truncate">{item.label}</span>
+                <span className={cn("truncate", !isExpanded && "opacity-0 w-0 overflow-hidden")}>{item.label}</span>
               </Link>
             </li>
           ))}
