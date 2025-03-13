@@ -112,11 +112,6 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
     },
     { 
       icon: <Workflow className="h-5 w-5" />, 
-      label: "Automation", 
-      path: "/dashboard/automation" 
-    },
-    { 
-      icon: <Zap className="h-5 w-5" />, 
       label: t('dashboard.automatedWorkflows'), 
       path: "/dashboard/workflows" 
     },
