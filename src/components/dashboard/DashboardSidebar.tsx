@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -135,7 +136,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ open }) => {
   return (
     <div 
       className={cn(
-        "h-screen fixed top-16 left-0 z-10 bg-sidebar border-r transition-all duration-300",
+        "h-screen fixed top-16 left-0 z-20 bg-sidebar border-r transition-all duration-300",
         isExpanded ? "w-64" : "w-20"
       )}
       onMouseEnter={handleMouseEnter}
