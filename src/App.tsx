@@ -15,6 +15,7 @@ import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/sonner";
 import Api from "./pages/Api";
+import Compliance from "./pages/Compliance";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/dashboard/insights" element={<Insights />} />
         <Route path="/dashboard/workflows" element={<Workflows />} />
         <Route path="/dashboard/apis" element={<Api />} />
+        <Route path="/dashboard/compliance" element={<Compliance />} />
         <Route path="/dashboard/white-label" element={<WhiteLabel />} />
         <Route path="/dashboard/white-label/portal" element={<Portal />} />
         <Route path="/dashboard/white-label/self-service" element={<SelfService />} />
