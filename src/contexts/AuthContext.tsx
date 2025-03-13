@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { User, UserRole, RolePermissions, UserFormData } from "@/types/auth";
 import { toast } from "sonner";
@@ -108,7 +109,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [users, setUsers] = useState<User[]>(INITIAL_MOCK_USERS);
   
+  // Initialize user state when component mounts
   useEffect(() => {
+    // Set the first user as the current user initially
     setUser(users[0]);
   }, []);
 
