@@ -23,7 +23,7 @@ export const useLanguage = () => {
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>('en');
   
-  const languages = [
+  const languages: { code: Language; name: string }[] = [
     { code: 'en', name: 'English' },
     { code: 'pt', name: 'Português' },
     { code: 'es', name: 'Español' }
@@ -36,7 +36,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('language') as Language;
+    const savedLanguage = localStorage.getItem('language') as Language | null;
     if (savedLanguage && languages.some(lang => lang.code === savedLanguage)) {
       setLanguage(savedLanguage);
     } else {
