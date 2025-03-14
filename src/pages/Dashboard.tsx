@@ -13,7 +13,10 @@ import {
   Users,
   Target,
   Wand2,
-  Briefcase
+  Briefcase,
+  Receipt,
+  Clock,
+  AlertTriangle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,8 +26,26 @@ import AiInsightsPanel from "@/components/dashboard/AiInsightsPanel";
 import PaymentOptionsCard from "@/components/dashboard/PaymentOptionsCard";
 import CommunicationPanel from "@/components/dashboard/CommunicationPanel";
 import PortfolioManagement from "@/components/dashboard/PortfolioManagement";
+import { Badge } from "@/components/ui/badge";
 
 const Dashboard = () => {
+  // Portfolio summary data (previously from PortfolioManagement)
+  const portfolioTotal = 96700;
+  const clientCount = 8;
+  const overdueTotal = 63600;
+  const overduePercentage = Math.round((overdueTotal / portfolioTotal) * 100);
+  const expectedRecovery = Math.round(overdueTotal * 0.877 * 100) / 100;
+  const recoveryPercentage = Math.round((expectedRecovery / overdueTotal) * 100 * 10) / 10;
+  const activeProducts = 7;
+
+  // Format currency function
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(value);
+  };
+
   return (
     <div className="space-y-6">
       {/* Welcome Banner */}
@@ -40,6 +61,61 @@ const Dashboard = () => {
             <Link to="/dashboard/settings">Take a tour</Link>
           </Button>
         </div>
+      </div>
+      
+      {/* Portfolio Summary Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm font-medium text-muted-foreground">Total do Portfólio</span>
+              <Receipt className="h-5 w-5 text-primary" />
+            </div>
+            <div className="space-y-1">
+              <div className="text-2xl font-bold">{formatCurrency(portfolioTotal)}</div>
+              <div className="text-sm text-muted-foreground">{clientCount} clientes</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm font-medium text-muted-foreground">Total em Atraso</span>
+              <AlertTriangle className="h-5 w-5 text-amber-500" />
+            </div>
+            <div className="space-y-1">
+              <div className="text-2xl font-bold">{formatCurrency(overdueTotal)}</div>
+              <div className="text-sm text-muted-foreground">{overduePercentage}% do portfólio</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm font-medium text-muted-foreground">Recuperação Prevista</span>
+              <Target className="h-5 w-5 text-green-500" />
+            </div>
+            <div className="space-y-1">
+              <div className="text-2xl font-bold">{formatCurrency(expectedRecovery)}</div>
+              <div className="text-sm text-muted-foreground">{recoveryPercentage}% do total em atraso</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm font-medium text-muted-foreground">Produtos Ativos</span>
+              <ShoppingBag className="h-5 w-5 text-blue-500" />
+            </div>
+            <div className="space-y-1">
+              <div className="text-2xl font-bold">{activeProducts}</div>
+              <div className="text-sm text-muted-foreground">Tipos de produtos</div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
       
       {/* Analytics Overview */}
@@ -63,7 +139,7 @@ const Dashboard = () => {
           value="4.2 days" 
           change="-1.5 days" 
           changeType="positive" 
-          icon={<Zap className="h-5 w-5" />} 
+          icon={<Clock className="h-5 w-5" />} 
         />
       </div>
       

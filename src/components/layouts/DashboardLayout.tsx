@@ -29,7 +29,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         }`} 
         style={{ paddingTop: '4rem' }}
       >
-        <div className="p-0 sm:p-2 md:p-4">
+        <div className="p-0 sm:p-1 md:p-2">
           {children}
         </div>
       </main>
