@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Search, Filter, Download, ArrowUpDown, AlertTriangle, CheckCircle2, Clock, CreditCard, Landmark, Receipt, DollarSign, ShoppingBag, PieChart } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -221,7 +222,8 @@ const PortfolioManagement = () => {
   const overdueTotal = clients
     .filter(client => client.status === "pre-delinquent" || client.status === "delinquent")
     .reduce((sum, client) => sum + client.amount, 0);
-  const expectedRecovery = overdueTotal * 0.877;
+  // Update the calculation to match exactly 87.7% of the overdueTotal
+  const expectedRecovery = Math.round(overdueTotal * 0.877 * 100) / 100;
 
   return (
     <Card>
